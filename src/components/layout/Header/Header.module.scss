@@ -1,0 +1,248 @@
+$pc: 1440px;
+$laptop: 1280px;
+$tablet: 1024px;
+$tablet-mini: 770px;
+$mobile: 640px;
+
+.main_home {
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-image: url('../../../assets/images/bg.jpg');
+
+    .container_head {
+        position: relative;
+        width: 100%;
+        height: 124px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo {
+            width: 210px;
+            height: 100%;
+            background-image: url('../../../assets/images/logo.png');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .text_container {
+            width: 100%;
+            max-width: 272px;
+            height: auto;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 25.6px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .button_container {
+            width: 330px;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+
+            .btn_size {
+                width: 156px;
+                height: 100%;
+            }
+        }
+    }
+
+    .main_container {
+        width: 100%;
+        height: 450px;
+        position: relative;
+
+        .camry {
+            position: absolute;
+            width: auto;
+            height: auto;
+            top: -30px;
+            right: -30px;
+        }
+
+        .text_container {
+            margin-top: 67px;
+
+            .head {
+                width: 596px;
+                height: 166px;
+                font-weight: 700;
+                font-size: 42px;
+                line-height: 54.6px;
+                color: #fff;
+                margin-bottom: 22px;
+            }
+
+            .text {
+                width: 395px;
+                height: 96px;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 32px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: rgba(193, 193, 193, 1);
+            }
+        }
+
+    }
+
+    .register_container {
+        width: 100%;
+        height: 175px;
+        display: flex;
+        justify-content: space-between;
+
+        .register {
+            width: 1060px;
+            height: 171px;
+            border-radius: 10px;
+            background-color: rgba(0, 166, 251, 0.15);
+            padding: 20px 30px 25px 30px;
+            box-sizing: border-box;
+
+            .head {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 32px;
+                color: rgba(255, 255, 255, 1);
+                margin-bottom: 10px;
+            }
+
+            .input_container {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+
+                .btn_size {
+                    width: 319px;
+                    height: 100%;
+                }
+
+                .input_size {
+                    width: 319px;
+                    height: 50px !important;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 100%;
+                    color: rgba(107, 111, 125, 1);
+                }
+            }
+
+            .text_container {
+                margin-top: 17px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: auto;
+                height: auto;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 19.2px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: #CCCCCC;
+
+                & span {
+                    color: rgba(0, 166, 251, 1);
+                }
+
+                .checkbox {
+                    margin-right: 7px;
+                    width: 15px;
+                    height: 15px;
+                    background: none;
+                    border: 1px solid #fff;
+                    border-radius: 2px;
+                }
+            }
+        }
+
+        .time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 206px;
+            height: 175px;
+            top: 624px;
+            left: 1218.8px;
+            border-radius: 4px;
+            border-top-width: 3px;
+            border-right-width: 3px;
+            border-bottom-width: 3px;
+            border-width: 3px, 3px, 3px, 0px;
+            border-style: solid;
+            border-color: rgba(0, 166, 251, 1);
+            padding: 39px 32px 40px 30px;
+            box-sizing: border-box;
+            color: #fff;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 33px;
+
+        }
+
+    }
+
+}
+
+.main {
+    width: 100%;
+    height: 124px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-image: url('../../../assets/images/bg.jpg');
+
+    .container {
+        width: 100%;
+        height: 124px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo {
+            width: 210px;
+            height: 100%;
+            background-image: url('../../../assets/images/logo.png');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .text_container {
+            width: 100%;
+            max-width: 272px;
+            height: auto;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 25.6px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .button_container {
+            width: 330px;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+
+            .btn_size {
+                width: 156px;
+                height: 100%;
+            }
+        }
+    }
+
+}

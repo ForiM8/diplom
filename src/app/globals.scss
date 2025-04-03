@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+:root {
+  --bg-red: #e31837;
+  --bg-white: #ffffff;
+  --bg-blue: rgba(0, 166, 251, 1);
+  --text-primary: #000000;
+  --text-secondary: #ffffff;
+  --text-red: #e31837;
+  --text-gray: rgba(51, 51, 51, 1);
+  --ui-rounded: 6px;
+  --input-form-bg: #F6F6F6;
+  --bg-light-white: #FAFAFA;
+  --bg-light-gray: #f0f0f0;
+  --bg-darkness-gray: #dadada;
+  --border-light-grey: #53535318;
+}
+
+$pc: 1440px;
+$laptop: 1280px;
+$tablet: 1024px;
+$tablet-mini: 770px;
+$mobile: 640px;
+
+.swiper-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  position: relative;
+  min-height: 100vh;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  outline: none;
+}

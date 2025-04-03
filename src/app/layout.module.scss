@@ -1,0 +1,9 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+
+    & main {
+        flex-grow: 1;
+        min-height: 42vh;
+    }
+}
