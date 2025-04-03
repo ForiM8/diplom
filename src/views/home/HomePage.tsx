@@ -5,7 +5,8 @@ import styles from './HomePage.module.scss'
 import { ImageCustom } from "@/components/layout/ui/ImageCustom"
 import Two_mens from '@/assets/images/two_mens.jpg'
 import Galka from '@/assets/images/why_needed_galka.jpg'
-import { about, services, why_checked, why_needed } from "@/components/dataTime/dataTime"
+import Danger from '@/assets/images/danger.png'
+import { about, risks, services, why_checked, why_needed } from "@/components/dataTime/dataTime"
 
 export const HomePage = () => {
 
@@ -132,6 +133,28 @@ export const HomePage = () => {
                                 </div>
                             )
                         )}
+                    </div>
+                </div>
+
+                <div className={styles.risks}>
+                    <h2>Риски самостоятельной покупки
+                        автомобиля</h2>
+                    <div className={styles.container}>
+                        {risks.map((elem) => {
+                            return (
+                                <div className={styles.block} key={elem.id}>
+                                    <ImageCustom
+                                        classNameImg={styles.img}
+                                        src={Danger}
+                                    />
+                                    <div className={styles.text}>
+                                        <h4>{elem.title}</h4>
+                                        <p>{elem.text}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+
                     </div>
                 </div>
             </Section >
