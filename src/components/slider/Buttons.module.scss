@@ -1,0 +1,26 @@
+$pc: 1440px;
+$laptop: 1280px;
+$tablet: 1024px;
+$tablet-mini: 770px;
+$mobile: 640px;
+
+.prev {
+    @media (width <=$tablet) {
+        left: 0px;
+
+        & svg {
+            scale: 0.6;
+        }
+    }
+}
+
+.next {
+
+    @media (width <=$tablet) {
+        right: 0px;
+
+        & svg {
+            scale: 0.6;
+        }
+    }
+}

@@ -25,6 +25,14 @@ $mobile: 640px;
         border-radius: 4px;
     }
 
+    &.plus {
+        width: 30px;
+        height: 30px;
+        border: none;
+        background: none;
+        background-image: url('../../../../assets/images/plus.png');
+    }
+
     &.secondary {
         background-color: var(--bg-white);
         color: var(--text-red);
@@ -80,6 +88,15 @@ $mobile: 640px;
         color: #FF3434;
         border: 1px solid #9e9e9e10;
         height: 30px;
+    }
+
+    &.up {
+        width: 49px;
+        height: 49px;
+        background-color: rgba(0, 166, 251, 1);
+        background-image: url('../../../../assets/icons/arrouUp.png');
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
 }

@@ -5,7 +5,7 @@ import Icn4 from '@/assets/images//icn4.png'
 import Icn5 from '@/assets/images//icn5.png'
 import Icn6 from '@/assets/images//icn6.png'
 
-export const about = [
+export const ABOUT = [
     {
         id: 1,
         title: '2 года',
@@ -28,7 +28,7 @@ export const about = [
     },
 ]
 
-export const services = [
+export const SERVICES = [
     {
         id: 1,
         title: 'Автоподбор легковых автомобилей',
@@ -67,7 +67,7 @@ export const services = [
     },
 ]
 
-export const why_needed = [
+export const WHY_NEEDED = [
     {
         id: 1,
         title: 'Экономия времени',
@@ -100,7 +100,7 @@ export const why_needed = [
     }
 ]
 
-export const why_checked = [
+export const WHY_CHECKED = [
 
     {
         id: 1,
@@ -144,7 +144,7 @@ export const why_checked = [
     }
 ]
 
-export const risks = [
+export const RISKS = [
     {
         id: 1,
         title: 'Скрученный пробег',
@@ -176,5 +176,133 @@ export const risks = [
         text: 'Многие продавцы необоснованно завышают цену на свой автомобиль. В таких случаях уместен торг.'
     }
 ]
+
+export const SELECTED_CARS = [
+    {
+        id: 1,
+        title: 'Hyundai Solaris, 1.4л, АКПП, 2018г.',
+        description: 'Осмотр Hyundai Solaris, 1.4л, АКПП, 2018г.',
+        mileage: '95,000 км',
+        price: '950,000 руб.'
+    },
+    {
+        id: 2,
+        title: 'BMW 5 f10, 2.0л, бензин, АКПП, 2015г.',
+        description: 'Осмотр BMW 5 f10, 2.0л, бензин, АКПП, 2015г.',
+        mileage: '82,000 км',
+        price: '1,870,000 руб.'
+    },
+    {
+        id: 3,
+        title: 'Hyundai Solaris, 1.6л, АКПП, 2017г.',
+        description: 'Осмотр Hyundai Solaris, 1.6л, АКПП, 2017г.',
+        mileage: '87,000 км',
+        price: '1,050,000 руб.'
+    },
+    {
+        id: 4,
+        title: 'Volkswagen Tiguan, 2.0л, АТ, 2013г.',
+        description: 'Осмотр Volkswagen Tiguan, 2.0л, АТ, 2013г.',
+        mileage: '133,000 км',
+        price: '1,100,000 руб.'
+    },
+    {
+        id: 5,
+        title: 'Hyundai Solaris, 1.4л, АКПП, 2018г.',
+        description: 'Осмотр Hyundai Solaris, 1.4л, АКПП, 2018г.',
+        mileage: '95,000 км',
+        price: '950,000 руб.'
+    },
+    {
+        id: 6,
+        title: 'BMW 5 f10, 2.0л, бензин, АКПП, 2015г.',
+        description: 'Осмотр BMW 5 f10, 2.0л, бензин, АКПП, 2015г.',
+        mileage: '82,000 км',
+        price: '1,870,000 руб.'
+    },
+    {
+        id: 7,
+        title: 'Hyundai Solaris, 1.6л, АКПП, 2017г.',
+        description: 'Осмотр Hyundai Solaris, 1.6л, АКПП, 2017г.',
+        mileage: '87,000 км',
+        price: '1,050,000 руб.'
+    },
+    {
+        id: 8,
+        title: 'Volkswagen Tiguan, 2.0л, АТ, 2013г.',
+        description: 'Осмотр Volkswagen Tiguan, 2.0л, АТ, 2013г.',
+        mileage: '133,000 км',
+        price: '1,100,000 руб.'
+    }
+]
+
+export const WORKS_SCHEME = [
+    {
+        id: 1,
+        title: 'Свяжитесь с нами',
+        text: 'Позвоните или оставьте заявку, наш менеджер свяжется с Вами для уточнения деталей.'
+    },
+    {
+        id: 2,
+        title: 'Договор и предоплата',
+        text: 'Составляем договор и после внесения депозита начинаем работать.'
+    },
+    {
+        id: 3,
+        title: 'Поиск и покупка авто',
+        text: 'Подбираем автомобиль. Клиент оплачивает внос (стоимость авто + расходы по транспортировке).'
+    },
+    {
+        id: 4,
+        title: 'Доставка и получение',
+        text: 'Отправляем автомобиль и документы в Ваш населенный пункт автовозом или по x/d.'
+    }
+]
+
+export const REVIEWS = [
+    {
+        id: 1,
+        title: 'Игорь, Наро-Фоминск',
+        car: 'Honda Vezel',
+        date: '18 Октября 2023',
+        text: 'Добрый день! Хотел бы поделиться впечатлениями от работы с данной компанией. Для начала поиск фирмы занял у меня не долгое время, так как заказывал первый раз и особо не изучал рынок. После того как связался с Еленой, меня уверяли, что в мой бюджет можно привезти из Японии хороший Аукционный...'
+    },
+    {
+        id: 2,
+        title: 'Юрий, Краснодар',
+        car: 'BMW X3',
+        date: '03 Ноября 2023',
+        text: 'Отличная компания. Обратился по рекомендации знакомого. Не пожалел ни разу. Все было на высшем уровне от начала до конца. Авто подбирали в Кореи и везли через Владивосток в Краснодар. Спасибо огромное за отличный автомобиль. Удачи вам и процветания!'
+    }
+]
+
+export const QUESTIONS = [
+    {
+        id: 1,
+        question: 'Как заказать автоподбор в Екатеринбурге?',
+        answer: ''
+    },
+    {
+        id: 2,
+        question: 'Сколько стоит автоподбор машины с пробегом?',
+        answer: ''
+    },
+    {
+        id: 3,
+        question: 'Нужен ли договор?',
+        answer: ''
+    },
+    {
+        id: 4,
+        question: 'Требуется ли предоплата?',
+        answer: ''
+    },
+    {
+        id: 5,
+        question: 'Что указывать для желаемого авто?',
+        answer: ''
+    }
+]
+
 
 

@@ -6,7 +6,10 @@ import { ImageCustom } from "@/components/layout/ui/ImageCustom"
 import Two_mens from '@/assets/images/two_mens.jpg'
 import Galka from '@/assets/images/why_needed_galka.jpg'
 import Danger from '@/assets/images/danger.png'
-import { about, risks, services, why_checked, why_needed } from "@/components/dataTime/dataTime"
+import Bmw from '@/assets/images/bmw.jpg'
+import { ABOUT, QUESTIONS, REVIEWS, RISKS, SELECTED_CARS, SERVICES, WHY_CHECKED, WHY_NEEDED, WORKS_SCHEME } from "@/components/dataTime/dataTime"
+import { Slider } from "@/components/slider/Slider"
+import { Button } from "@/components/layout/ui/button/Button"
 
 export const HomePage = () => {
 
@@ -14,7 +17,7 @@ export const HomePage = () => {
         <>
             <Section>
                 <div className={styles.about_us}>
-                    {about.map((elem) => {
+                    {ABOUT.map((elem) => {
                         return (
                             <div className={styles.about} key={elem.id}>
                                 <p className={styles.head}>{elem.title}</p>
@@ -67,7 +70,7 @@ export const HomePage = () => {
                 <div className={styles.our_services}>
                     <h2>Наши услуги</h2>
                     <div className={styles.service_container}>
-                        {services.map((elem) => {
+                        {SERVICES.map((elem) => {
                             return (
                                 <div className={styles.service_block} key={elem.id}>
                                     <p className={styles.price}>{elem.price}</p>
@@ -87,7 +90,7 @@ export const HomePage = () => {
                 <div className={styles.why_needed}>
                     <h2>Зачем нужен автоподбор</h2>
                     <div className={styles.container}>
-                        {why_needed.map((elem) => {
+                        {WHY_NEEDED.map((elem) => {
                             return (
                                 <div className={styles.block} key={elem.id}>
                                     <ImageCustom
@@ -107,7 +110,7 @@ export const HomePage = () => {
                 <div className={styles.why_checked}>
                     <h2>Что необходимо проверить в автомобиле?</h2>
                     <div className={styles.container}>
-                        {why_checked.map((elem) =>
+                        {WHY_CHECKED.map((elem) =>
                             elem.id % 2 === 0 ? (
                                 <div className={styles.right} key={elem.id}>
                                     <div className={styles.line_container}>
@@ -140,7 +143,7 @@ export const HomePage = () => {
                     <h2>Риски самостоятельной покупки
                         автомобиля</h2>
                     <div className={styles.container}>
-                        {risks.map((elem) => {
+                        {RISKS.map((elem) => {
                             return (
                                 <div className={styles.block} key={elem.id}>
                                     <ImageCustom
@@ -156,6 +159,96 @@ export const HomePage = () => {
                         })}
 
                     </div>
+                </div>
+
+                <div className={styles.selectedCars}>
+                    <h2>Подобранные автомобили</h2>
+                    <div className={styles.containerSlider}>
+                        <Slider
+                            settings={{ slidesPerView: 1, spaceBetween: 20 }}
+                            arrowNext={false}
+                            arrowPrev={false}
+                            items={[
+                                SELECTED_CARS
+                                    .map((item: any, i: number) => (
+                                        <div className={styles.block} key={i}>
+                                            <ImageCustom
+                                                classNameImg={styles.img}
+                                                src={Bmw}
+                                            />
+                                            <div className={styles.title}>{item.description}</div>
+                                            <div className={styles.description}>
+                                                <p>Пробег:{item.mileage}</p>
+                                                <p>Цена:{item.price}</p>
+                                            </div>
+                                        </div>
+                                    )),
+                            ]}
+                            pagination
+                        />
+                    </div>
+                </div>
+
+                <div className={styles.workScheme}>
+                    <h2>Схема нашей работы</h2>
+                    <div className={styles.list}>
+                        {WORKS_SCHEME.map((item: any, index: any) =>
+                            item && (
+                                <div key={index}>
+                                    <h4>{item.title}</h4>
+                                    <p>{item.text}</p>
+                                </div>
+                            )
+                        )
+                        }
+                    </div>
+                </div>
+
+                <div className={styles.reviews}>
+                    <h2>Отзывы</h2>
+                    <div className={styles.containerSlider}>
+                        <Slider
+                            settings={{ slidesPerView: 1, spaceBetween: 20 }}
+                            arrowNext={false}
+                            arrowPrev={false}
+                            items={[
+                                REVIEWS
+                                    .map((item: any, i: number) => (
+                                        <div className={styles.block} key={i}>
+                                            <ImageCustom
+                                                classNameImg={styles.img}
+                                                src={Bmw}
+                                            />
+                                            <div className={styles.textContainer}>
+                                                <p className={styles.date}>{item.date}</p>
+                                                <h4>{item.title}</h4>
+                                                <p className={styles.car}>{item.car}</p>
+                                                <p>{item.text}</p>
+                                                <Button
+                                                    className={styles.btn_size}
+                                                    variant="border_blue">
+                                                    Отзыв полностью
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    )),
+                            ]}
+                            pagination
+                        />
+                    </div>
+                </div>
+
+                <div className={styles.questions}>
+                    <h2>Часто задаваемые вопросы</h2>
+                    {QUESTIONS.map((item: any, i: number) =>
+                        <div className={styles.block} key={i}>
+                            <p>{item.question}</p>
+                            <Button
+                                className={styles.btn_size}
+                                variant="plus">
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </Section >
         </>

@@ -15,7 +15,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'small'
     | 'blue'
     | 'border_blue'
-
+    | 'plus'
+    | 'up'
     href?: string
 }
 
@@ -42,6 +43,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     styles.button,
                     props.className,
                     {
+                        [styles.up]: variant === 'up',
+                        [styles.plus]: variant === 'plus',
                         [styles.blue]: variant === 'blue',
                         [styles.border_blue]: variant === 'border_blue',
                         [styles.inFavorite]: variant === 'inFavorite',

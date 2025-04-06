@@ -3,6 +3,7 @@ import "./globals.scss";
 import clsx from "clsx";
 import styles from './layout.module.scss';
 import { Header } from "@/components/layout/Header/Header";
+import { Footer } from "@/components/layout/Footer/Footer";
 
 const ubuntu = Open_Sans({
   subsets: ['cyrillic', 'latin'],
@@ -21,6 +22,7 @@ export default function RootLayout({
         <div className='layout'>
           <Header />
           <main>{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

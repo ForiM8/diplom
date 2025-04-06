@@ -499,7 +499,331 @@ $mobile: 640px;
         }
     }
 
+    margin-bottom: 81px;
 }
+
+.selectedCars {
+
+    h2 {
+        font-weight: 700;
+        font-size: 41px;
+        line-height: 49.2px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: rgba(51, 51, 51, 1);
+        margin-bottom: 101px;
+    }
+
+    .containerSlider {
+        width: 100%;
+        height: 390px;
+
+        .swiper {
+            display: flex !important;
+            overflow: hidden;
+            width: 1440px;
+            height: auto;
+
+            @media (width <=$pc) {
+                width: 1100px;
+                height: 270px;
+            }
+
+            @media (width <=$laptop) {
+                width: 900px;
+                height: 240px;
+            }
+
+            @media (width <=$tablet) {
+                width: 660px;
+                height: 150px;
+            }
+
+            @media (width <=$tablet-mini) {
+                width: 90vw;
+                height: 15dvh;
+                object-fit: contain;
+            }
+        }
+
+        .block {
+            position: relative;
+            width: 338px;
+            height: 383px;
+            background-color: rgba(15, 20, 30, 1);
+            border-radius: 10px;
+
+            .img {
+                width: 100%;
+                height: 252px;
+                object-fit: contain;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+            }
+
+            .title {
+                width: 100%;
+                height: 76.78px;
+                padding: 13px 15px 15px 15px;
+                box-sizing: border-box;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 23.4px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: rgba(255, 255, 255, 1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .description {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 15px;
+                padding-right: 15px;
+                box-sizing: border-box;
+                color: #fff;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 16.9px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+
+            }
+        }
+    }
+
+
+}
+
+.workScheme {
+    margin-top: 43px;
+    width: 100%;
+    height: auto;
+
+    h2 {
+        font-weight: 700;
+        font-size: 41px;
+        line-height: 49.2px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: rgba(51, 51, 51, 1);
+        margin-bottom: 87px;
+    }
+
+    .list {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+
+        &>div {
+            width: 286px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            h4 {
+                width: auto;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 26px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: rgba(51, 51, 51, 1);
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 22.4px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: rgba(51, 51, 51, 1);
+            }
+
+
+
+            &:not(:last-child) {
+                padding-right: 20px;
+
+                &::after {
+                    content: url("../../assets/images/right.JPG");
+                    transform: scale(0.50);
+                    position: absolute;
+                    left: 100%;
+                }
+            }
+
+            & img {
+                rotate: 90deg;
+            }
+        }
+
+    }
+
+    margin-bottom: 106px;
+}
+
+.reviews {
+    width: 100%;
+    height: auto;
+    background-color: rgba(232, 236, 246, 1);
+    padding: 46px 15px 60px 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    h2 {
+        font-weight: 700;
+        font-size: 41px;
+        line-height: 49.2px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: rgba(51, 51, 51, 1);
+        margin-bottom: 101px;
+    }
+
+    .containerSlider {
+        width: 100%;
+        height: 400px;
+
+        .swiper {
+            display: flex !important;
+            overflow: hidden;
+            width: 1440px;
+            height: auto;
+
+            @media (width <=$pc) {
+                width: 1100px;
+                height: 270px;
+            }
+
+            @media (width <=$laptop) {
+                width: 900px;
+                height: 240px;
+            }
+
+            @media (width <=$tablet) {
+                width: 660px;
+                height: 150px;
+            }
+
+            @media (width <=$tablet-mini) {
+                width: 90vw;
+                height: 15dvh;
+                object-fit: contain;
+            }
+        }
+
+        .block {
+            position: relative;
+            width: 690px;
+            height: 396px;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 5px;
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+
+
+            .img {
+                width: 200px;
+                height: 150px;
+                object-fit: contain;
+            }
+
+            .textContainer {
+                height: 100%;
+                width: 386px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 22.4px;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: rgba(51, 51, 51, 1);
+
+                .date {
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 20.8px;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                    color: rgba(153, 153, 153, 1);
+                }
+
+                h4 {
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 23.4px;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                    color: rgba(51, 51, 51, 1);
+                }
+
+                .car {
+                    color: rgba(0, 166, 251, 1);
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 25.6px;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                }
+
+                .btn_size {
+                    width: 200px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+}
+
+.questions {
+    width: 100%;
+    height: auto;
+    padding: 87px 15px 30px 15px;
+
+    h2 {
+        font-weight: 700;
+        font-size: 41px;
+        line-height: 49.2px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: rgba(51, 51, 51, 1);
+        margin-bottom: 47px;
+    }
+
+    .block {
+        width: 100%;
+        height: 91px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(229, 229, 229, 1);
+
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32.4px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: rgba(51, 51, 51, 1);
+
+        &:last-child {
+            border: none
+        }
+    }
+}
+
 
 // .carousel_section {
 //     background-color: #e4e4e4;
