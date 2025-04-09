@@ -1,0 +1,115 @@
+.bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(232, 236, 246, 1);
+
+    .main_container {
+        width: 100%;
+        height: auto;
+        padding-top: 35px;
+        box-sizing: border-box;
+
+        h1 {
+            font-weight: 700;
+            font-size: 41px;
+            line-height: 49.2px;
+            letter-spacing: 0%;
+            vertical-align: middle;
+            color: rgba(51, 51, 51, 1);
+            margin-bottom: 37px;
+        }
+
+        .container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+
+            .main {
+                width: 1000px;
+                height: auto;
+
+                .block {
+                    width: 100%;
+                    height: 762.94px;
+                    background-color: rgb(255, 255, 255);
+                    border-radius: 15px;
+                    margin-bottom: 40px;
+
+                    .img {
+                        border-top-right-radius: 15px;
+                        border-top-left-radius: 15px;
+                        width: 100%;
+                        height: 441.17px;
+                        object-fit: cover;
+                        margin-bottom: 6px;
+                    }
+
+                    .main {
+                        width: 100%;
+                        height: 321.77px;
+                        padding: 30px;
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        .settings {
+                            width: 311.71px;
+                            height: auto;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .date {
+                                width: auto;
+                                height: auto;
+                                display: flex;
+                                gap: 6.41px;
+                                font-weight: 400;
+                                font-size: 18px;
+                                line-height: 28.8px;
+                                letter-spacing: 0%;
+                                vertical-align: middle;
+                                color: rgba(51, 51, 51, 1);
+
+                                .img {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+
+                        }
+
+                        h2 {
+                            color: rgba(0, 166, 251, 1);
+                            font-weight: 700;
+                            font-size: 26px;
+                            line-height: 31.2px;
+                            letter-spacing: 0%;
+                            vertical-align: middle;
+                        }
+
+                        p {
+                            font-family: Open Sans;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 25.6px;
+                            letter-spacing: 0%;
+                            vertical-align: middle;
+                            color: rgba(51, 51, 51, 1);
+                            max-width: 727px;
+                        }
+
+                        .btn_size {
+                            padding: 13.2px 32px;
+                            max-width: 151.5px;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}
