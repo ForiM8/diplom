@@ -19,7 +19,7 @@ export const Header = () => {
                             <div className={styles.logo}></div>
                             <div className={styles.text_container}>
                                 <a href="/services">Услуги</a>
-                                <p>Отзывы</p>
+                                <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
                             <div className={styles.button_container}>
@@ -81,7 +81,7 @@ export const Header = () => {
                             <div className={styles.logo}></div>
                             <div className={styles.text_container}>
                                 <a href="/services">Услуги</a>
-                                <p>Отзывы</p>
+                                <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
                             <div className={styles.button_container}>
