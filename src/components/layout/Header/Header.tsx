@@ -18,7 +18,7 @@ export const Header = () => {
                         <div className={styles.container_head}>
                             <div className={styles.logo}></div>
                             <div className={styles.text_container}>
-                                <p>Услуги</p>
+                                <a href="/services">Услуги</a>
                                 <p>Отзывы</p>
                                 <a href="/blog">Блог</a>
                             </div>
@@ -80,7 +80,7 @@ export const Header = () => {
                         <div className={styles.container}>
                             <div className={styles.logo}></div>
                             <div className={styles.text_container}>
-                                <p>Услуги</p>
+                                <a href="/services">Услуги</a>
                                 <p>Отзывы</p>
                                 <a href="/blog">Блог</a>
                             </div>
