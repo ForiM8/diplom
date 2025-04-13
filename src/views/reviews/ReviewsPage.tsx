@@ -7,7 +7,7 @@ import { Section } from "@/components/layout/Section/Section"
 import { ImageCustom } from '@/components/layout/ui/ImageCustom'
 import Star from '@/assets/images/star.png'
 
-export const Reviews = () => {
+export const ReviewsPage = () => {
     return (
         <div className={styles.bg}>
             <Section>

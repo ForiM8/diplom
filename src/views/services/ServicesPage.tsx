@@ -6,7 +6,7 @@ import { Section } from "@/components/layout/Section/Section"
 import { ImageCustom } from '@/components/layout/ui/ImageCustom'
 import { SERVICES } from '@/components/dataTime/dataTime'
 
-export const Services = () => {
+export const ServicesPage = () => {
 
     return (
         <div className={styles.bg}>

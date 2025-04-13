@@ -31,7 +31,7 @@ $mobile: 640px;
 
         .text_container {
             width: 100%;
-            max-width: 272px;
+            max-width: 372px;
             height: auto;
             font-weight: 400;
             font-size: 16px;
@@ -40,6 +40,10 @@ $mobile: 640px;
             display: flex;
             justify-content: space-between;
             cursor: pointer;
+
+            .main_selects {
+                width: 51px;
+            }
         }
 
         .button_container {
@@ -152,6 +156,10 @@ $mobile: 640px;
                 vertical-align: middle;
                 color: #CCCCCC;
 
+                .main_selects {
+                    width: 300px;
+                }
+
                 & span {
                     color: rgba(0, 166, 251, 1);
                 }
@@ -221,7 +229,7 @@ $mobile: 640px;
 
         .text_container {
             width: 100%;
-            max-width: 272px;
+            max-width: 372px;
             height: auto;
             font-weight: 400;
             font-size: 16px;
@@ -230,6 +238,10 @@ $mobile: 640px;
             display: flex;
             justify-content: space-between;
             cursor: pointer;
+
+            .main_selects {
+                width: 51px;
+            }
         }
 
         .button_container {

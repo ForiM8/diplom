@@ -1,6 +1,10 @@
 .crumbs {
     margin-bottom: 33px;
 
+    a {
+        color: rgba(0, 166, 251, 1);
+    }
+
     .list {
         display: flex;
         align-items: center;
@@ -15,7 +19,7 @@
             display: flex;
             gap: 5px;
             align-items: center;
-            color: rgba(0, 166, 251, 1);
+            color: rgb(0, 0, 0);
 
             &:last-child {
                 color: #000000;

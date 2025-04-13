@@ -11,7 +11,7 @@ import { BLOG_BLOCK, SERVICES } from '@/components/dataTime/dataTime'
 import { Button } from '@/components/layout/ui/button/Button'
 import { Input } from '@/components/layout/ui/input/Input'
 
-export const Blog = () => {
+export const BlogPage = () => {
 
     return (
         <div className={styles.bg}>

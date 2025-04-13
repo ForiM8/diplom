@@ -3,13 +3,22 @@
 import { Section } from "../Section/Section"
 import styles from './Header.module.scss'
 import { Button } from "../ui/button/Button"
-import { usePathname } from "next/navigation"
+import { redirect, usePathname } from "next/navigation"
 import Camry from '../../../assets/images/camry.png'
 import { ImageCustom } from "../ui/ImageCustom"
 import { Input } from "../ui/input/Input"
+import { HeaderSelectBar } from "./HeaderSelectBar/HeaderSelectBar"
+import { SELECT_SERVICES } from "@/components/dataTime/dataTime"
 
 export const Header = () => {
     const pathname = usePathname();
+
+    const handleChangeFilter = (selectedFilter: {
+        value: string
+        label: string
+    }) => {
+        redirect(`/service/${selectedFilter.value}`)
+    }
     return (
         <>
             {pathname === '/' ? (
@@ -18,7 +27,12 @@ export const Header = () => {
                         <div className={styles.container_head}>
                             <div className={styles.logo}></div>
                             <div className={styles.text_container}>
-                                <a href="/services">Услуги</a>
+                                <div className={styles.main_selects}>
+                                    <HeaderSelectBar
+                                        handleChangeFilter={handleChangeFilter}
+                                        availableSortingTypes={SELECT_SERVICES}
+                                    />
+                                </div>
                                 <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
@@ -80,7 +94,12 @@ export const Header = () => {
                         <div className={styles.container}>
                             <div className={styles.logo}></div>
                             <div className={styles.text_container}>
-                                <a href="/services">Услуги</a>
+                                <div className={styles.main_selects}>
+                                    <HeaderSelectBar
+                                        handleChangeFilter={handleChangeFilter}
+                                        availableSortingTypes={SELECT_SERVICES}
+                                    />
+                                </div>
                                 <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>

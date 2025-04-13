@@ -2,7 +2,7 @@
 
 import styles from './Crumbs.module.scss'
 
-export const Crumbs = ({ span }: { span: string }) => {
+export const Crumbs = ({ span, slug }: { span: string, slug?: string }) => {
     return (
         <div className={styles.crumbs}>
             <div className={styles.list}>
@@ -15,6 +15,10 @@ export const Crumbs = ({ span }: { span: string }) => {
                 <div>
                     <span>{span}</span>
                 </div>
+                {slug ? <div>
+                    <span>{slug}</span>
+                </div> : null}
+
             </div >
         </div>
 

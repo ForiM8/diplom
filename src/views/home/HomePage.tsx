@@ -75,7 +75,7 @@ export const HomePage = () => {
                                 <div className={styles.service_block} key={elem.id}>
                                     <p className={styles.price}>{elem.price}</p>
                                     <h3>{elem.title}</h3>
-                                    <a>Перейти к предложениям</a>
+                                    <a href={`/service/${elem.slug}`}>Перейти к предложениям</a>
                                     <ImageCustom
                                         classNameImg={styles.img}
                                         src={elem.icon}

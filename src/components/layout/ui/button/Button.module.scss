@@ -58,10 +58,7 @@ $mobile: 640px;
     }
 
     &.inFavorite {
-        border: 2px solid var(--bg-red);
-        background-color: #fff;
-        padding: 6px 13px;
-        color: var(--text-secondary);
+        background: none;
     }
 
     &.muted {
