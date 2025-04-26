@@ -38,11 +38,13 @@ export const Header = () => {
                             </div>
                             <div className={styles.button_container}>
                                 <Button
+                                    onClick={() => redirect(`/auth`)}
                                     className={styles.btn_size}
                                     variant="border_blue">
                                     Вход
                                 </Button>
                                 <Button
+                                    onClick={() => redirect(`/auth`)}
                                     className={styles.btn_size}
                                     variant="blue">
                                     Регистрация
@@ -105,11 +107,13 @@ export const Header = () => {
                             </div>
                             <div className={styles.button_container}>
                                 <Button
+                                    onClick={() => redirect(`/auth`)}
                                     className={styles.btn_size}
                                     variant="border_blue">
                                     Вход
                                 </Button>
                                 <Button
+                                    onClick={() => redirect(`/auth`)}
                                     className={styles.btn_size}
                                     variant="blue">
                                     Регистрация

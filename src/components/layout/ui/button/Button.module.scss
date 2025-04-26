@@ -35,7 +35,7 @@ $mobile: 640px;
 
     &.secondary {
         background-color: var(--bg-white);
-        color: var(--text-red);
+        color: var(--text-blue);
     }
 
     &.blue {
@@ -53,7 +53,7 @@ $mobile: 640px;
     }
 
     &.primary {
-        background-color: var(--bg-red);
+        background-color: var(--bg-blue);
         color: var(--text-secondary);
     }
 
