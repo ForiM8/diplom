@@ -4,7 +4,7 @@ import styles from './ReviewsPage.module.scss'
 import { Crumbs } from "@/components/crumbs/Crumbs"
 import { REVIEWS_PAGE } from '@/components/dataTime/dataTime'
 import { Section } from "@/components/layout/Section/Section"
-import { ImageCustom } from '@/components/layout/ui/ImageCustom'
+import { ImageCustom } from '@/components/ui/ImageCustom'
 import Star from '@/assets/images/star.png'
 
 export const ReviewsPage = () => {

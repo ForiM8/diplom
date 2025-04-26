@@ -1,14 +1,14 @@
 'use client'
 
 import { Section } from '../Section/Section'
-import { ImageCustom } from '../ui/ImageCustom'
 import styles from './Footer.module.scss'
 import Address from '@/assets/icons/address-icon.png'
 import Mail from '@/assets/icons/mail-icon.svg.png'
 import Phone from '@/assets/icons/phone-icon.svg.png'
 import Whatsapp from '@/assets/icons/whatsapp.svg.png'
 import Telegram from '@/assets/icons/telegram.svg.png'
-import { Button } from '../ui/button/Button'
+import { ImageCustom } from '@/components/ui/ImageCustom'
+import { Button } from '@/components/ui/button/Button'
 
 export const Footer = () => {
     return (

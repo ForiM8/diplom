@@ -4,6 +4,8 @@ import clsx from "clsx";
 import styles from './layout.module.scss';
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { MainProvider } from "@/providers/MainProvider";
+// import Head from "next/head";
 
 const ubuntu = Open_Sans({
   subsets: ['cyrillic', 'latin'],
@@ -17,13 +19,18 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang='en'>
+      {/* <Head>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
+			</Head> */}
       <body className={clsx(ubuntu.className, styles.layout)}>
-        <div className='layout'>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <MainProvider>
+          <div className='layout'>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </MainProvider>
       </body>
     </html>
   );

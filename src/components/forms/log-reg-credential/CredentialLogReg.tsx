@@ -5,8 +5,8 @@ import clsx from 'clsx'
 import { Ubuntu } from 'next/font/google'
 import { useCallback, useState } from 'react'
 import styles from './CredentialLogReg.module.scss'
-import { Button } from '@/components/layout/ui/button/Button'
-import { Input } from '@/components/layout/ui/input/Input'
+import { Button } from '@/components/ui/button/Button'
+import { Input } from '@/components/ui/input/Input'
 
 const ubuntu = Ubuntu({
     subsets: ['latin'],

@@ -1,0 +1,67 @@
+.user_avatar_container {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 30px;
+
+	.avatar_image {
+		width: 90px;
+		height: 90px;
+		border-radius: 50%;
+	}
+
+	.username {
+		font-size: 22px;
+		font-weight: 500;
+	}
+
+	.usernameSkeleton {
+		width: 108px;
+		height: 25px;
+		margin-bottom: 3px;
+		background-color: #cbcbcb;
+		animation: pulse 1.5s infinite;
+		border-radius: 8px;
+	}
+
+	.date_registered {
+		opacity: 0.5;
+		font-size: 12px;
+	}
+
+	.date_registered_skeleton {
+		width: 168px;
+		height: 18px;
+		background-color: #cbcbcb;
+		animation: pulse 1.5s infinite;
+		border-radius: 8px;
+	}
+}
+
+.user_form_data {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	row-gap: 16px;
+	column-gap: 103px;
+	margin-bottom: 20px;
+}
+
+.user_account_manager_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

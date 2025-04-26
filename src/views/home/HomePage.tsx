@@ -2,14 +2,14 @@
 
 import { Section } from "@/components/layout/Section/Section"
 import styles from './HomePage.module.scss'
-import { ImageCustom } from "@/components/layout/ui/ImageCustom"
+import { ImageCustom } from "@/components/ui/ImageCustom"
 import Two_mens from '@/assets/images/two_mens.jpg'
 import Galka from '@/assets/images/why_needed_galka.jpg'
 import Danger from '@/assets/images/danger.png'
 import Bmw from '@/assets/images/bmw.jpg'
 import { ABOUT, QUESTIONS, REVIEWS, RISKS, SELECTED_CARS, SERVICES, WHY_CHECKED, WHY_NEEDED, WORKS_SCHEME } from "@/components/dataTime/dataTime"
 import { Slider } from "@/components/slider/Slider"
-import { Button } from "@/components/layout/ui/button/Button"
+import { Button } from "@/components/ui/button/Button"
 
 export const HomePage = () => {
 

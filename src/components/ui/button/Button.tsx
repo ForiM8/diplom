@@ -17,6 +17,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'border_blue'
     | 'plus'
     | 'up'
+    | 'inFavoriteMain'
     href?: string
 }
 
@@ -54,6 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         [styles.credit]: variant === 'credit',
                         [styles.small]: variant === 'small',
                         [styles.small_destructive]: variant === 'small-destructive',
+                        [styles.in_favorite_main]: variant === 'inFavoriteMain',
                     },
                     'lg:hover:opacity-60 duration-200 ease-in-out active:scale-[0.97]'
                 )}

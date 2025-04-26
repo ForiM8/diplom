@@ -6,10 +6,10 @@ import Holder from '@/assets/icons/papochkaIcon.png'
 import { Section } from "@/components/layout/Section/Section"
 import styles from './BlogPage.module.scss'
 import { Crumbs } from "@/components/crumbs/Crumbs"
-import { ImageCustom } from '@/components/layout/ui/ImageCustom'
+import { ImageCustom } from '@/components/ui/ImageCustom'
 import { BLOG_BLOCK, SERVICES } from '@/components/dataTime/dataTime'
-import { Button } from '@/components/layout/ui/button/Button'
-import { Input } from '@/components/layout/ui/input/Input'
+import { Button } from '@/components/ui/button/Button'
+import { Input } from '@/components/ui/input/Input'
 
 export const BlogPage = () => {
 

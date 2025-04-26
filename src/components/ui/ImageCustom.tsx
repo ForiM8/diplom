@@ -1,5 +1,5 @@
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import Image, { StaticImageData } from 'next/image'
+import { StaticImageData, StaticImport } from 'next/dist/shared/lib/get-img-props'
+import Image from 'next/image'
 import { HTMLAttributes } from 'react'
 
 interface ImageCustomProps extends HTMLAttributes<HTMLDivElement> {

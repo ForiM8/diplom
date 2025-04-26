@@ -2,13 +2,13 @@
 
 import { Section } from "../Section/Section"
 import styles from './Header.module.scss'
-import { Button } from "../ui/button/Button"
 import { redirect, usePathname } from "next/navigation"
 import Camry from '../../../assets/images/camry.png'
-import { ImageCustom } from "../ui/ImageCustom"
-import { Input } from "../ui/input/Input"
 import { HeaderSelectBar } from "./HeaderSelectBar/HeaderSelectBar"
 import { SELECT_SERVICES } from "@/components/dataTime/dataTime"
+import { Button } from "@/components/ui/button/Button"
+import { Input } from "@/components/ui/input/Input"
+import { ImageCustom } from "@/components/ui/ImageCustom"
 
 export const Header = () => {
     const pathname = usePathname();
@@ -25,7 +25,7 @@ export const Header = () => {
                 <header className={styles.main_home}>
                     <Section>
                         <div className={styles.container_head}>
-                            <div className={styles.logo}></div>
+                            <div onClick={() => redirect(`/`)} className={styles.logo}></div>
                             <div className={styles.text_container}>
                                 <div className={styles.main_selects}>
                                     <HeaderSelectBar
@@ -94,7 +94,7 @@ export const Header = () => {
                 <header className={styles.main}>
                     <Section>
                         <div className={styles.container}>
-                            <div className={styles.logo}></div>
+                            <div onClick={() => redirect(`/`)} className={styles.logo}></div>
                             <div className={styles.text_container}>
                                 <div className={styles.main_selects}>
                                     <HeaderSelectBar

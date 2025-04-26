@@ -431,3 +431,68 @@ export const SERVICE_BLOCK = [
         text: 'Автоэксперт на день... от 8 000р. Автоподбор. Автоэксперт. Честный автоподборщик. Звоните Сразу! Выезжаю оперативно в течение часа, чтобы не пустить ваш вариант автомобиля, одновременно держу продавца на телефоне! На осмотр сразу выезжаю сам — без посредников! Консультация по телефону — бесплатно. Не работаю за оценку! Услуга для вас практически бесплатна — в 95% случаев стоимость моей работы окупается за счёт успешного аргументированного торга! До 85% всех автомобилей выкупают перекупщики, правую недостатки, а потом продают вам дороже!'
     }
 ]
+
+export const ITEMS = [
+    {
+        id: 6857,
+        slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+        name: "Автоподбор. Толщиномер.Честный подбор",
+        price: 1200,
+        amount: 2,
+        settings: {
+            show_if_no_count: false
+        },
+        category: {
+            id: 2273,
+            name: "Регуляторы давления",
+            slug: "regulyatory-davleniya",
+            lft: 107,
+            rht: 108,
+            parent_id: 1886,
+            ordinal_number: 4
+        },
+        warehouses: [],
+        images: [
+            {
+                id: 28490,
+                name: null,
+                path: People,
+                ItemImagesEntity: {
+                    ordinal_number: 1
+                }
+            }
+
+        ]
+    },
+    {
+        id: 6858,
+        slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+        name: "Автоподбор. Толщиномер.Честный подбор",
+        price: 1200,
+        amount: 2,
+        settings: {
+            show_if_no_count: false
+        },
+        category: {
+            id: 2273,
+            name: "Регуляторы давления",
+            slug: "regulyatory-davleniya",
+            lft: 107,
+            rht: 108,
+            parent_id: 1886,
+            ordinal_number: 4
+        },
+        warehouses: [],
+        images: [
+            {
+                id: 28490,
+                name: null,
+                path: People,
+                ItemImagesEntity: {
+                    ordinal_number: 1
+                }
+            }
+
+        ]
+    }
+]

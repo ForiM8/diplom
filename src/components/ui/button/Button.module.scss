@@ -30,7 +30,7 @@ $mobile: 640px;
         height: 30px;
         border: none;
         background: none;
-        background-image: url('../../../../assets/images/plus.png');
+        background-image: url('../../../assets/images/plus.png');
     }
 
     &.secondary {
@@ -50,6 +50,10 @@ $mobile: 640px;
         border-radius: 4px;
         border: 2px solid rgba(0, 166, 251, 1);
         color: rgba(0, 166, 251, 1);
+    }
+
+    &.in_favorite_main {
+        background: none;
     }
 
     &.primary {
@@ -91,7 +95,7 @@ $mobile: 640px;
         width: 49px;
         height: 49px;
         background-color: rgba(0, 166, 251, 1);
-        background-image: url('../../../../assets/icons/arrouUp.png');
+        background-image: url('../../../assets/icons/arrouUp.png');
         background-repeat: no-repeat;
         background-position: center;
     }

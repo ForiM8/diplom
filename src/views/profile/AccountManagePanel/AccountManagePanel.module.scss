@@ -1,0 +1,38 @@
+.account_settings {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 30px 20px;
+	background: var(--bg-light-white);
+	border-radius: 8px;
+	border: 1px solid rgba(87, 87, 87, 0.041);
+
+	position: sticky;
+	position: -webkit-sticky;
+	top: 90px;
+
+	.setting_item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 8px 10px;
+		cursor: pointer;
+		border-radius: 4px;
+
+		transition: all 50ms ease-in-out;
+
+		&.selected {
+			background: var(--bg-blue);
+			color: white
+		}
+
+		&:hover {
+			background: var(--bg-blue);
+			color: white
+		}
+
+		&:active {
+			opacity: 0.7;
+		}
+	}
+}

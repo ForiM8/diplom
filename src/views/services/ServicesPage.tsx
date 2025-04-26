@@ -3,7 +3,7 @@
 import { Crumbs } from '@/components/crumbs/Crumbs'
 import styles from './ServicesPage.module.scss'
 import { Section } from "@/components/layout/Section/Section"
-import { ImageCustom } from '@/components/layout/ui/ImageCustom'
+import { ImageCustom } from '@/components/ui/ImageCustom'
 import { SERVICES } from '@/components/dataTime/dataTime'
 
 export const ServicesPage = () => {

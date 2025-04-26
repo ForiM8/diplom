@@ -1,0 +1,19 @@
+.container {
+
+	& h1,
+	h2 {
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	& h2 {
+		margin: 40px 0;
+	}
+
+
+
+	.filters {
+		width: 270px;
+		margin: 40px 0;
+	}
+}

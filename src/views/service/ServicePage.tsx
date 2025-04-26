@@ -3,9 +3,9 @@
 import { Crumbs } from '@/components/crumbs/Crumbs'
 import styles from './ServicePage.module.scss'
 import { Section } from "@/components/layout/Section/Section"
-import { ImageCustom } from '@/components/layout/ui/ImageCustom'
+import { ImageCustom } from '@/components/ui/ImageCustom'
 import { SERVICE_BLOCK, SERVICES } from '@/components/dataTime/dataTime'
-import { Button } from '@/components/layout/ui/button/Button'
+import { Button } from '@/components/ui/button/Button'
 import People from '@/assets/images//heart_border_black.png'
 import Star from '@/assets/images/star.png'
 
