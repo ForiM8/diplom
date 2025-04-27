@@ -1,4 +1,7 @@
 .container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 
 	& h1,
 	h2 {
@@ -15,5 +18,34 @@
 	.filters {
 		width: 270px;
 		margin: 40px 0;
+		color: var(--text-gray);
+	}
+
+	.filtersContent {
+		border: 1px solid #c7c7c7 !important;
+		background-color: #fff !important;
+		cursor: pointer;
+
+		visibility: hidden;
+		opacity: 0;
+		margin-top: 10px;
+
+		transition: all 250ms ease-in-out;
+
+		& li {
+			width: 300px;
+			padding: 5px 10px;
+
+			&:hover {
+				background: rgb(217, 217, 217);
+			}
+		}
+
+		&.open {
+			visibility: visible;
+			opacity: 1;
+			margin-top: 0;
+		}
+
 	}
 }

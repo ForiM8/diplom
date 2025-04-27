@@ -12,6 +12,8 @@ import { FavoritesItemsSection } from './Sections/FavoritesItems/FavoritesItemsS
 // import { OrderListSection } from './Sections/OrderList/OrderListSection'
 import { User } from '@/types/User.types'
 import { Button } from '@/components/ui/button/Button'
+import { AccountSettingsSection } from './Sections/AccountSettings/AccountSettingsSection'
+import { OrderListSection } from './Sections/OrderList/OrderListSection'
 
 export const ProfilePage = () => {
 	const router = useRouter()
@@ -20,14 +22,15 @@ export const ProfilePage = () => {
 			{ name: 'order-list', value: 0, title: 'Список заказов' },
 			// { name: 'bonuses', value: 1, title: 'Бонусы' },
 			{ name: 'favorites', value: 1, title: 'Избранное' },
-			// { name: 'feedback', value: 3, title: 'Обратная связь' },
+			{ name: 'messenger', value: 2, title: 'Сообщения' },
 			// {
 			// 	name: 'my-address',
 			// 	value: 4,
 			// 	title: 'Мои адреса доставки',
 			// },
 			// { name: 'notification', value: 5, title: 'Список уведомлений' },
-			{ name: 'settings', value: 2, title: 'Настройки аккаунта' },
+			{ name: 'settings', value: 3, title: 'Настройки аккаунта' },
+			{ name: 'advertisements', value: 4, title: 'Мои объявления' },
 		]
 	}, [])
 
@@ -54,16 +57,18 @@ export const ProfilePage = () => {
 	const sections = useMemo(() => {
 		return [
 			<div key={1}>
-				{/* <OrderListSection /> */}
+				<OrderListSection />
 			</div>,
 			// <div key={2}>section 2</div>,
 			<div key={2}>
 				<FavoritesItemsSection />
 			</div>,
-			// <div key={4}>section 4</div>,
+			<div key={3}>section 4</div>,
+
 			// <div key={5}>section 5</div>,
 			// <div key={6}>section 6</div>,
-			// <AccountSettingsSection />,
+			<AccountSettingsSection key={4} />,
+			<div key={4}>section 5</div>,
 		]
 	}, [])
 

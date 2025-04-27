@@ -9,6 +9,7 @@ import { LiaStreetViewSolid } from 'react-icons/lia'
 import { LuHeart } from 'react-icons/lu'
 import { MdOutlineMessage } from 'react-icons/md'
 import { VscSettingsGear } from 'react-icons/vsc'
+import { MdDesignServices } from "react-icons/md";
 import styles from './AccountManagePanel.module.scss'
 
 interface AccountManagePanelProps {
@@ -46,7 +47,7 @@ const panelSettingVariables = [
 	{ title: 'Заказы', image: VscSettingsGear, url: 'order-list' },
 	// { title: 'Бонусы', image: HiOutlineGift, url: 'bonuses' },
 	{ title: 'Избранное', image: LuHeart, url: 'favorites' },
-	// { title: 'Обратная связь', image: MdOutlineMessage, url: 'feedback' },
+	{ title: 'Сообщения', image: MdOutlineMessage, url: 'messenger' },
 	// { title: 'Мои адреса', image: LiaStreetViewSolid, url: 'my-address' },
 	// {
 	// 	title: 'Настройка уведомлений',
@@ -54,4 +55,5 @@ const panelSettingVariables = [
 	// 	url: 'notification',
 	// },
 	{ title: 'Настройка аккаунта', image: CgProfile, url: 'settings' },
+	{ title: 'Мои объявления', image: MdDesignServices, url: 'advertisements' },
 ]

@@ -435,7 +435,7 @@ export const SERVICE_BLOCK = [
 export const ITEMS = [
     {
         id: 6857,
-        slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+        slug: "avtopodbor_tolahinimer_chestniy_podbor",
         name: "Автоподбор. Толщиномер.Честный подбор",
         price: 1200,
         amount: 2,
@@ -444,8 +444,8 @@ export const ITEMS = [
         },
         category: {
             id: 2273,
-            name: "Регуляторы давления",
-            slug: "regulyatory-davleniya",
+            name: "Автоподбор",
+            slug: "avtopodbor",
             lft: 107,
             rht: 108,
             parent_id: 1886,
@@ -466,7 +466,7 @@ export const ITEMS = [
     },
     {
         id: 6858,
-        slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+        slug: "avtopodbor_tolahinimer_chestniy_podbor",
         name: "Автоподбор. Толщиномер.Честный подбор",
         price: 1200,
         amount: 2,
@@ -475,8 +475,8 @@ export const ITEMS = [
         },
         category: {
             id: 2273,
-            name: "Регуляторы давления",
-            slug: "regulyatory-davleniya",
+            name: "Автоподбор",
+            slug: "avtopodbor",
             lft: 107,
             rht: 108,
             parent_id: 1886,
@@ -494,5 +494,215 @@ export const ITEMS = [
             }
 
         ]
+    }
+]
+
+export const ORDER_ITEMS = [
+    {
+        id: 80,
+        order_number: "1744371256503541",
+        user_id: 7,
+        delivery_status: 2,
+        delivery_method: 2,
+        payment_status: 0,
+        payment_method: 2,
+        city_id: 1,
+        street: "Эм. Алексеевой, 116, 664",
+        zip_code: "656000",
+        date_delivery: "2025-04-11T11:34:16.503Z",
+        comments: [],
+        createdAt: "2025-04-11T11:34:16.504Z",
+        updatedAt: "2025-04-14T03:56:51.284Z",
+        user: {
+            id: 7,
+            role: 3,
+            email: "gg@mail.ru",
+            password_hash: "$2b$10$mTdzI3nsnCmymS1DaRwdbuUaDIc05Fxrnyo3.QC/JiaUwwNfUdQWe",
+            status: 1,
+            name: "Мальцев Абат Олегович",
+            phone: "89132441181",
+            city_id: 1,
+            street: "Эм. Алексеевой",
+            house: "116",
+            flat: "664",
+            zip_code: "656000",
+            telegram: null,
+            createdAt: "2025-03-04T10:30:48.217Z",
+            updatedAt: "2025-04-25T19:27:06.483Z"
+        },
+        orderItems: [
+            {
+                order_id: 80,
+                item_id: 6857,
+                count: 1,
+                createdAt: "2025-04-11T11:34:16.509Z",
+                updatedAt: "2025-04-11T11:34:16.509Z",
+                item: {
+                    id: 6857,
+                    name: "Автоподбор. Автоэксперт. Честный автоподборщик",
+                    slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+                    price: 1200,
+                    amount: 2,
+                    description: "Малогабаритный пропановый редуктор выполнен по осевой схеме, за счет чего обладает компактными размерами при сохранении всех рабочих параметров на уровне крупногабаритных редукторов. Редуктор предназначен для понижения и регулирования давления газа (пропана), поступающего из баллона, и автоматического поддержания постоянного рабочего давления газа при питании постов и установок газовой сварки, резки, пайки и других технологических процессов.",
+                    images: [
+                        {
+                            id: 28490,
+                            name: null,
+                            path: People,
+                            ItemImagesEntity: {
+                                ordinal_number: 1
+                            }
+                        },
+
+                    ]
+                }
+            }
+        ],
+        city: {
+            id: 1,
+            country_id: 1,
+            region_id: 61,
+            name: "Кяхта",
+            createdAt: "2024-04-10T16:31:00.398Z",
+            updatedAt: "2024-04-10T16:31:00.398Z"
+        }
+    },
+    {
+        id: 80,
+        order_number: "1744371256503541",
+        user_id: 7,
+        delivery_status: 3,
+        delivery_method: 2,
+        payment_status: 0,
+        payment_method: 2,
+        city_id: 1,
+        street: "Эм. Алексеевой, 116, 664",
+        zip_code: "656000",
+        date_delivery: "2025-04-11T11:34:16.503Z",
+        comments: [],
+        createdAt: "2025-04-11T11:34:16.504Z",
+        updatedAt: "2025-04-14T03:56:51.284Z",
+        user: {
+            id: 7,
+            role: 3,
+            email: "gg@mail.ru",
+            password_hash: "$2b$10$mTdzI3nsnCmymS1DaRwdbuUaDIc05Fxrnyo3.QC/JiaUwwNfUdQWe",
+            status: 1,
+            name: "Мальцев Абат Олегович",
+            phone: "89132441181",
+            city_id: 1,
+            street: "Эм. Алексеевой",
+            house: "116",
+            flat: "664",
+            zip_code: "656000",
+            telegram: null,
+            createdAt: "2025-03-04T10:30:48.217Z",
+            updatedAt: "2025-04-25T19:27:06.483Z"
+        },
+        orderItems: [
+            {
+                order_id: 80,
+                item_id: 6857,
+                count: 1,
+                createdAt: "2025-04-11T11:34:16.509Z",
+                updatedAt: "2025-04-11T11:34:16.509Z",
+                item: {
+                    id: 6857,
+                    name: "Автоподбор. Автоэксперт. Честный автоподборщик",
+                    slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+                    price: 1200,
+                    amount: 2,
+                    description: "Малогабаритный пропановый редуктор выполнен по осевой схеме, за счет чего обладает компактными размерами при сохранении всех рабочих параметров на уровне крупногабаритных редукторов. Редуктор предназначен для понижения и регулирования давления газа (пропана), поступающего из баллона, и автоматического поддержания постоянного рабочего давления газа при питании постов и установок газовой сварки, резки, пайки и других технологических процессов.",
+                    images: [
+                        {
+                            id: 28490,
+                            name: null,
+                            path: People,
+                            ItemImagesEntity: {
+                                ordinal_number: 1
+                            }
+                        },
+
+                    ]
+                }
+            }
+        ],
+        city: {
+            id: 1,
+            country_id: 1,
+            region_id: 61,
+            name: "Кяхта",
+            createdAt: "2024-04-10T16:31:00.398Z",
+            updatedAt: "2024-04-10T16:31:00.398Z"
+        }
+    },
+    {
+        id: 80,
+        order_number: "1744371256503541",
+        user_id: 7,
+        delivery_status: 4,
+        delivery_method: 2,
+        payment_status: 0,
+        payment_method: 2,
+        city_id: 1,
+        street: "Эм. Алексеевой, 116, 664",
+        zip_code: "656000",
+        date_delivery: "2025-04-11T11:34:16.503Z",
+        comments: [],
+        createdAt: "2025-04-11T11:34:16.504Z",
+        updatedAt: "2025-04-14T03:56:51.284Z",
+        user: {
+            id: 7,
+            role: 3,
+            email: "gg@mail.ru",
+            password_hash: "$2b$10$mTdzI3nsnCmymS1DaRwdbuUaDIc05Fxrnyo3.QC/JiaUwwNfUdQWe",
+            status: 1,
+            name: "Мальцев Абат Олегович",
+            phone: "89132441181",
+            city_id: 1,
+            street: "Эм. Алексеевой",
+            house: "116",
+            flat: "664",
+            zip_code: "656000",
+            telegram: null,
+            createdAt: "2025-03-04T10:30:48.217Z",
+            updatedAt: "2025-04-25T19:27:06.483Z"
+        },
+        orderItems: [
+            {
+                order_id: 80,
+                item_id: 6857,
+                count: 1,
+                createdAt: "2025-04-11T11:34:16.509Z",
+                updatedAt: "2025-04-11T11:34:16.509Z",
+                item: {
+                    id: 6857,
+                    name: "Автоподбор. Автоэксперт. Честный автоподборщик",
+                    slug: "regulyator_davleniyareduktor_propanovyi_odnostupenchatyi_redius_168",
+                    price: 1200,
+                    amount: 2,
+                    description: "Малогабаритный пропановый редуктор выполнен по осевой схеме, за счет чего обладает компактными размерами при сохранении всех рабочих параметров на уровне крупногабаритных редукторов. Редуктор предназначен для понижения и регулирования давления газа (пропана), поступающего из баллона, и автоматического поддержания постоянного рабочего давления газа при питании постов и установок газовой сварки, резки, пайки и других технологических процессов.",
+                    images: [
+                        {
+                            id: 28490,
+                            name: null,
+                            path: People,
+                            ItemImagesEntity: {
+                                ordinal_number: 1
+                            }
+                        },
+
+                    ]
+                }
+            }
+        ],
+        city: {
+            id: 1,
+            country_id: 1,
+            region_id: 61,
+            name: "Кяхта",
+            createdAt: "2024-04-10T16:31:00.398Z",
+            updatedAt: "2024-04-10T16:31:00.398Z"
+        }
     }
 ]

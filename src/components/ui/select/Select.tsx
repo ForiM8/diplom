@@ -10,6 +10,7 @@ type Props = {
 	value?: { value: string; label: string } | null
 	onSelect?: (value: { value: string; label: string }) => void
 	className?: string
+	classNameContent?: string
 }
 export const Select = ({
 	items,
@@ -17,6 +18,7 @@ export const Select = ({
 	value,
 	onSelect,
 	className,
+	classNameContent,
 }: Props) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	return (
@@ -28,7 +30,7 @@ export const Select = ({
 				/> */}
 			</p>
 
-			<ul className={clsx(styles.content, isOpen && styles.open)}>
+			<ul className={clsx(styles.content, classNameContent, isOpen && styles.open)}>
 				{items?.map((item, index) => (
 					<li
 						key={index}
