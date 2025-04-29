@@ -1,4 +1,4 @@
-
+import SearchImage from '@/assets/images/search.png'
 import clsx from 'clsx'
 import { forwardRef, InputHTMLAttributes } from 'react'
 import styles from './Input.module.scss'
@@ -32,10 +32,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                     className={clsx(styles.input, {
                         [styles.form]: variant === 'form',
                         [styles.form_big]: variant === 'form-big',
+                        [styles.navigation]: variant === 'navigation',
                     })}
                     {...props}
                 />
-
+                {/* ACTION BUTTON  */}
+                {variant === 'navigation' && (
+                    <button>
+                        <img src={SearchImage} alt="" />
+                    </button>
+                )}
             </div>
         )
     }

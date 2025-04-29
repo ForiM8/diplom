@@ -14,6 +14,8 @@ import { User } from '@/types/User.types'
 import { Button } from '@/components/ui/button/Button'
 import { AccountSettingsSection } from './Sections/AccountSettings/AccountSettingsSection'
 import { OrderListSection } from './Sections/OrderList/OrderListSection'
+import { AccountMessengerListSection } from './Sections/AccountMessengerListSection/AccountMessengerListSection'
+import { AccountMessengerSection } from './Sections/AccountMessengerSection/AccountMessengerSection'
 
 export const ProfilePage = () => {
 	const router = useRouter()
@@ -22,7 +24,7 @@ export const ProfilePage = () => {
 			{ name: 'order-list', value: 0, title: 'Список заказов' },
 			// { name: 'bonuses', value: 1, title: 'Бонусы' },
 			{ name: 'favorites', value: 1, title: 'Избранное' },
-			{ name: 'messenger', value: 2, title: 'Сообщения' },
+			{ name: 'messenger-list', value: 2, title: 'Сообщения' },
 			// {
 			// 	name: 'my-address',
 			// 	value: 4,
@@ -31,6 +33,7 @@ export const ProfilePage = () => {
 			// { name: 'notification', value: 5, title: 'Список уведомлений' },
 			{ name: 'settings', value: 3, title: 'Настройки аккаунта' },
 			{ name: 'advertisements', value: 4, title: 'Мои объявления' },
+			{ name: 'messenger', value: 5, title: 'Сообщения' },
 		]
 	}, [])
 
@@ -56,19 +59,20 @@ export const ProfilePage = () => {
 
 	const sections = useMemo(() => {
 		return [
-			<div key={1}>
+			<div key={0}>
 				<OrderListSection />
 			</div>,
 			// <div key={2}>section 2</div>,
-			<div key={2}>
+			<div key={1}>
 				<FavoritesItemsSection />
 			</div>,
-			<div key={3}>section 4</div>,
+			<AccountMessengerListSection key={2} setActivePanel={setActivePanelSettingNumber} />,
 
 			// <div key={5}>section 5</div>,
 			// <div key={6}>section 6</div>,
-			<AccountSettingsSection key={4} />,
+			<AccountSettingsSection key={3} />,
 			<div key={4}>section 5</div>,
+			<AccountMessengerSection key={5} />,
 		]
 	}, [])
 

@@ -24,21 +24,26 @@ export const AccountManagePanel = ({
 	const router = useRouter()
 	return (
 		<div className={styles.account_settings}>
-			{panelSettingVariables.map((setting, i) => (
-				<div
-					onClick={() => {
-						setActivePanel(i)
-						router.push(`/profile/${setting.url}`)
-					}}
-					className={clsx(styles.setting_item, {
-						[styles.selected]: activePanelSettingNumber === i,
-					})}
-					key={i}
-				>
-					<setting.image size={25} />
-					<p>{setting.title}</p>
-				</div>
-			))}
+			{panelSettingVariables.map((setting, i) => {
+				if (setting.title) {
+					return (
+						<div
+							onClick={() => {
+								console.log(i)
+								setActivePanel(i)
+								router.push(`/profile/${setting.url}`)
+							}}
+							className={clsx(styles.setting_item, {
+								[styles.selected]: activePanelSettingNumber === i,
+							})}
+							key={i}
+						>
+							<setting.image size={25} />
+							<p>{setting.title}</p>
+						</div>
+					)
+				}
+			})}
 		</div>
 	)
 }
@@ -47,7 +52,7 @@ const panelSettingVariables = [
 	{ title: 'Заказы', image: VscSettingsGear, url: 'order-list' },
 	// { title: 'Бонусы', image: HiOutlineGift, url: 'bonuses' },
 	{ title: 'Избранное', image: LuHeart, url: 'favorites' },
-	{ title: 'Сообщения', image: MdOutlineMessage, url: 'messenger' },
+	{ title: 'Сообщения', image: MdOutlineMessage, url: 'messenger-list' },
 	// { title: 'Мои адреса', image: LiaStreetViewSolid, url: 'my-address' },
 	// {
 	// 	title: 'Настройка уведомлений',
@@ -56,4 +61,5 @@ const panelSettingVariables = [
 	// },
 	{ title: 'Настройка аккаунта', image: CgProfile, url: 'settings' },
 	{ title: 'Мои объявления', image: MdDesignServices, url: 'advertisements' },
+	{ title: '', image: '', url: 'messenger' },
 ]
