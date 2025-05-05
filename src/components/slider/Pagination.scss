@@ -1,0 +1,44 @@
+/* styles.scss */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pagination-absolute {
+    position: absolute;
+    bottom: -20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.pagination-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.pagination-item div {
+    width: 30px;
+    height: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.pagination-item div.active {
+    background-color: black;
+}
+
+.pagination-item div:not(.active) {
+    background-color: #D9D9D9;
+}
+
+.pagination-item div:hover {
+    background-color: #919191;
+}

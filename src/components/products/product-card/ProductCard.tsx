@@ -16,6 +16,7 @@ type Props = {
 	item: Product
 	// itemsInBasked?: ProductInResult[]
 	mutate?: () => void
+	MyAdsSection?: boolean
 	// itemsInFavorite?: ProductInFavorite[]
 }
 const itemsInBasked = [
@@ -31,7 +32,7 @@ const itemsInFavorite = [
 		id: 6857
 	}
 ]
-export const ProductCard: FC<Props> = ({ item }) => {
+export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 	const [isAction, setIsAction] = useState(false)
 	const isInBasked = itemsInBasked?.find(
 		(itemInBasked) => itemInBasked.item.id === item.id
@@ -43,27 +44,31 @@ export const ProductCard: FC<Props> = ({ item }) => {
 	return (
 		<div className={styles.product_card}>
 			{isInFavorite ? (
-				<Button
-					// onClick={() => deleteDataInFavorite({
-					// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-					// 	price: item.price, description: item.description, images: item.images[0].path
-					// })}
-					variant='inFavoriteMain'
-					className={styles.favorite}
-				>
-					<ImageCustom className='w-[25px] h-[25px]' src={HeartRed} />
-				</Button>
+				!MyAdsSection && (
+					<Button
+						// onClick={() => deleteDataInFavorite({
+						// 	id: item.id, count: 1, name: item.name, slug: item.slug,
+						// 	price: item.price, description: item.description, images: item.images[0].path
+						// })}
+						variant='inFavoriteMain'
+						className={styles.favorite}
+					>
+						<ImageCustom className='w-[25px] h-[25px]' src={HeartRed} />
+					</Button>
+				)
 			) : (
-				<Button
-					// onClick={() => addDataInFavorite({
-					// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-					// 	price: item.price, description: item.description, images: item.images[0].path, amount: item.amount
-					// })}
-					variant='inFavoriteMain'
-					className={styles.favorite}
-				>
-					<ImageCustom className='w-[25px] h-[25px]' src={HeartBlackBorder} />
-				</Button>
+				!MyAdsSection && (
+					<Button
+						// onClick={() => addDataInFavorite({
+						// 	id: item.id, count: 1, name: item.name, slug: item.slug,
+						// 	price: item.price, description: item.description, images: item.images[0].path, amount: item.amount
+						// })}
+						variant='inFavoriteMain'
+						className={styles.favorite}
+					>
+						<ImageCustom className='w-[25px] h-[25px]' src={HeartBlackBorder} />
+					</Button>
+				)
 			)}
 			<div className={styles.image_container}>
 
@@ -98,68 +103,70 @@ export const ProductCard: FC<Props> = ({ item }) => {
 				<div>
 					<div className={styles.item_in_basked_container}>
 						{isInBasked && isInBasked?.item.id ? (
-							<>
-								<Button
-									onClick={() => {
-										// addDataInBasket({
-										// 	id: item.id,
-										// 	count: isInBasked && isInBasked?.count - 1 || basket[0]?.count - 1,
-										// 	name: item.name, slug: item.slug,
-										// 	price: item.price, description: item.description, images: item.images[0].path,
-										// 	amount: item.amount,
-										// 	show_if_no_count: item.settings.show_if_no_count
-										// });
-									}}
-									variant='small'
-								>
-									<Minus />
-								</Button>
-								<Button disabled variant='muted'>
-									{isInBasked?.count}
-								</Button>
-								<Button
-									onClick={() => {
-										// addDataInBasket({
-										// 	id: item.id,
-										// 	count: isInBasked && isInBasked?.count + 1 || basket[0]?.count + 1,
-										// 	name: item.name, slug: item.slug,
-										// 	price: item.price, description: item.description, images: item.images[0].path,
-										// 	amount: item.amount,
-										// 	show_if_no_count: item.settings.show_if_no_count
-										// });
-									}}
-									variant='small'
-								>
-									<Plus />
-								</Button>
-							</>
-
-						) : (
-
-							item.settings.show_if_no_count === false && item.amount === 0 ? (
-								<Button
-
-									className={styles.recycle_button}
-									variant='muted'
-								>
-									Нет в наличии
-								</Button>
-							) : (
+							!MyAdsSection && (
 								<>
 									<Button
-										// onClick={() => addDataInBasket({
-										// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-										// 	price: item.price, description: item.description, images: item.images[0].path,
-										// 	amount: item.amount
-										// })}
-										className={styles.recycle_button}
+										onClick={() => {
+											// addDataInBasket({
+											// 	id: item.id,
+											// 	count: isInBasked && isInBasked?.count - 1 || basket[0]?.count - 1,
+											// 	name: item.name, slug: item.slug,
+											// 	price: item.price, description: item.description, images: item.images[0].path,
+											// 	amount: item.amount,
+											// 	show_if_no_count: item.settings.show_if_no_count
+											// });
+										}}
+										variant='small'
 									>
-										В корзину
+										<Minus />
 									</Button>
-
+									<Button disabled variant='muted'>
+										{isInBasked?.count}
+									</Button>
+									<Button
+										onClick={() => {
+											// addDataInBasket({
+											// 	id: item.id,
+											// 	count: isInBasked && isInBasked?.count + 1 || basket[0]?.count + 1,
+											// 	name: item.name, slug: item.slug,
+											// 	price: item.price, description: item.description, images: item.images[0].path,
+											// 	amount: item.amount,
+											// 	show_if_no_count: item.settings.show_if_no_count
+											// });
+										}}
+										variant='small'
+									>
+										<Plus />
+									</Button>
 								</>
 							)
 
+						) : (
+							!MyAdsSection && (
+								item.settings.show_if_no_count === false && item.amount === 0 ? (
+									<Button
+
+										className={styles.recycle_button}
+										variant='muted'
+									>
+										Нет в наличии
+									</Button>
+								) : (
+									<>
+										<Button
+											// onClick={() => addDataInBasket({
+											// 	id: item.id, count: 1, name: item.name, slug: item.slug,
+											// 	price: item.price, description: item.description, images: item.images[0].path,
+											// 	amount: item.amount
+											// })}
+											className={styles.recycle_button}
+										>
+											В корзину
+										</Button>
+
+									</>
+								)
+							)
 
 						)}
 					</div>

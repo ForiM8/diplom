@@ -3,6 +3,7 @@ import { HTMLAttributes, ReactNode, useEffect, useState } from 'react'
 import { SwiperRef } from 'swiper/react'
 import { SwiperOptions } from 'swiper/types'
 import { Slider } from './Slider'
+import './Pagination.scss' // Импортируйте ваш SCSS файл
 
 interface PaginationProps extends HTMLAttributes<HTMLDivElement> {
     itemsLength: number
@@ -31,7 +32,7 @@ export const Pagination = ({
     return (
         <>
             {customPagination ? (
-                <div className='flex items-center gap-[6px]'>
+                <div className='pagination-container'>
                     <Slider
                         settings={swiperSettingsCustomPagination}
                         arrowPrev={false}
@@ -43,24 +44,21 @@ export const Pagination = ({
                     />
                 </div>
             ) : (
-                <>
-                    <div className='absolute bottom-[-20px] flex items-center justify-center w-full gap-[12px]'>
-                        {Array.from({ length: itemsLength }).map((_, i) => (
+                <div className='pagination-absolute'>
+                    {Array.from({ length: itemsLength }).map((_, i) => (
+                        <div
+                            onClick={() => swiperRef.swiper.slideTo(i)}
+                            className='pagination-item'
+                            key={i}
+                        >
                             <div
-                                onClick={() => swiperRef.swiper.slideTo(i)}
-                                className='flex items-center justify-center w-[35px] h-[15px] cursor-pointer group'
+                                className={`pagination-item div ${activeIndex === i ? 'active' : ''} ${props.className}`}
                                 key={i}
-                            >
-                                <div
-                                    className={`w-[30px] h-[2px] cursor-pointer duration-300 ease-in-out group-hover:bg-[#919191] ${activeIndex === i ? 'bg-black' : 'bg-[#D9D9D9]'
-                                        } ${props.className}`}
-                                    key={i}
-                                    {...props}
-                                ></div>
-                            </div>
-                        ))}
-                    </div>
-                </>
+                                {...props}
+                            ></div>
+                        </div>
+                    ))}
+                </div>
             )}
         </>
     )

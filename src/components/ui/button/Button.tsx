@@ -18,6 +18,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'plus'
     | 'up'
     | 'inFavoriteMain'
+    | 'noFavoriteCards'
     href?: string
 }
 
@@ -49,6 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         [styles.blue]: variant === 'blue',
                         [styles.border_blue]: variant === 'border_blue',
                         [styles.inFavorite]: variant === 'inFavorite',
+                        [styles.noFavoriteCards]: variant === 'noFavoriteCards',
                         [styles.primary]: variant === 'primary',
                         [styles.secondary]: variant === 'secondary',
                         [styles.muted]: variant === 'muted',

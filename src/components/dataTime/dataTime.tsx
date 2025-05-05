@@ -706,3 +706,310 @@ export const ORDER_ITEMS = [
         }
     }
 ]
+
+export const USER_DATA = [
+    {
+        id: 0,
+        name: 'Anil',
+        text: 'April fool’s day',
+        lastTimeMessages: 'Sun Jan 12 2025 2:00:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://cs-erkon.pro/files/avatars/1692599353.jpg',
+        read: 'true',
+        status: "people"
+    },
+    {
+        id: 1,
+        name: 'Vicktor',
+        text: 'Baag',
+        lastTimeMessages: 'Sun Jan 12 2025 18:01:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://i.pinimg.com/736x/84/d5/b6/84d5b6753ac36dd8516ebf530031a7f8.jpg',
+        read: 'false',
+        status: "people"
+    },
+    {
+        id: 2,
+        name: 'Mary ma’am',
+        text: 'You must report this because it is illegal.',
+        lastTimeMessages: 'Sun Jan 12 2025 18:02:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://ae03.alicdn.com/kf/Sd44a6cac34c74db79a78ce7d4def7fb5w.jpg',
+        read: 'false',
+        status: "people"
+    },
+    {
+        id: 3,
+        name: 'Bill Gates',
+        text: 'Nevermind bro',
+        lastTimeMessages: 'Sun Jan 12 2025 18:03:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Visit_of_Bill_Gates%2C_Chairman_of_Breakthrough_Energy_Ventures%2C_to_the_European_Commission_5_%28cropped%29.jpg',
+        read: 'false',
+        status: "people"
+    },
+    {
+        id: 4,
+        name: 'Elon Musk',
+        text: 'important',
+        lastTimeMessages: 'Sun Jan 12 2025 18:04:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://www.ixbt.com/img/n1/news/2024/8/1/ixbtmedia_elon_musk_-_head_of_department_of_government_effici_110519e3-41b0-43ce-86a3-aadc930f4f75_1_large.png',
+        read: 'false',
+        status: "people"
+    },
+    {
+        id: 5,
+        text: 'Who are you',
+        lastTimeMessages: 'Sun Jan 12 2025 18:05:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://i.pinimg.com/280x280_RS/a5/c8/6b/a5c86bb22f0cc8b58c2fd0ce7c52ef6e.jpg',
+        read: 'true',
+        status: "people"
+    },
+    {
+        id: 6,
+        name: 'Victoria H',
+        text: 'Who are all these people???',
+        lastTimeMessages: 'Sun Jan 12 2025 18:06:32 GMT+0700 (Новосибирск, стандартное время)',
+        avatar: 'https://i.pinimg.com/280x280_RS/a5/c8/6b/a5c86bb22f0cc8b58c2fd0ce7c52ef6e.jpg',
+        read: 'true',
+        status: "people"
+    },
+
+]
+
+export const GROUPS_DATA = [
+    {
+        id: 0,
+        name: 'Friends Forever',
+        lastText: 'Hahahahah!',
+        avatar: 'https://i.pinimg.com/474x/d8/e0/58/d8e0587cedc5cc49a8d9043ca26712cf.jpg',
+        creator: 'Victoria H',
+        status: "group",
+        text: [{
+            id: 0,
+            name: 'Anil',
+            text: 'April fool’s day',
+            lastTimeMessages: 'Sun Jan 12 2025 2:00:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://cs-erkon.pro/files/avatars/1692599353.jpg',
+            read: 'true',
+            status: "people"
+        },
+        {
+            id: 1,
+            name: 'Vicktor',
+            text: 'Baag',
+            lastTimeMessages: 'Sun Jan 12 2025 18:01:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://i.pinimg.com/736x/84/d5/b6/84d5b6753ac36dd8516ebf530031a7f8.jpg',
+            read: 'false',
+            status: "people"
+        },
+        {
+            id: 2,
+            name: 'Mary ma’am',
+            text: 'You must report this because it is illegal.',
+            lastTimeMessages: 'Sun Jan 12 2025 18:02:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://ae03.alicdn.com/kf/Sd44a6cac34c74db79a78ce7d4def7fb5w.jpg',
+            read: 'false',
+            status: "people"
+        },
+        {
+            id: 3,
+            name: 'Bill Gates',
+            text: 'Nevermind bro',
+            lastTimeMessages: 'Sun Jan 12 2025 18:03:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Visit_of_Bill_Gates%2C_Chairman_of_Breakthrough_Energy_Ventures%2C_to_the_European_Commission_5_%28cropped%29.jpg',
+            read: 'false',
+            status: "people"
+        },
+        {
+            id: 4,
+            name: 'Elon Musk',
+            text: 'important',
+            lastTimeMessages: 'Sun Jan 12 2025 18:04:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://www.ixbt.com/img/n1/news/2024/8/1/ixbtmedia_elon_musk_-_head_of_department_of_government_effici_110519e3-41b0-43ce-86a3-aadc930f4f75_1_large.png',
+            read: 'false',
+            status: "people"
+        },
+        {
+            id: 5,
+            text: 'Who are you',
+            lastTimeMessages: 'Sun Jan 12 2025 18:05:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://i.pinimg.com/280x280_RS/a5/c8/6b/a5c86bb22f0cc8b58c2fd0ce7c52ef6e.jpg',
+            read: 'true',
+            status: "people"
+        },
+        {
+            id: 6,
+            name: 'Victoria H',
+            text: 'Who are all these people???',
+            lastTimeMessages: 'Sun Jan 12 2025 18:06:32 GMT+0700 (Новосибирск, стандартное время)',
+            avatar: 'https://i.pinimg.com/280x280_RS/a5/c8/6b/a5c86bb22f0cc8b58c2fd0ce7c52ef6e.jpg',
+            read: 'true',
+            status: "people"
+        },],
+    },
+]
+export const ITEM_DATA =
+{
+    id: 6855,
+    slug: "palatka_chetyrehmestnaya_s_tamburom_razmer_palatki_245215spalynoe_mestotambur110100_shirina245",
+    name: "Автоподбор. Автоэксперт. Честный автоподборщик",
+    price: 1000,
+    amount: 1,
+    createdAt: "2025-03-11T14:54:06.505Z",
+    updatedAt: "2025-05-04T12:40:12.963Z",
+    attribute_group_id: null,
+    category_id: 2205,
+    brand_id: null,
+    rating: 5,
+    status: 1,
+    settings: {
+        show_if_no_count: false
+    },
+    description: "    Данная палатка вмещает в себя 4-х человек, предназначена для походов, путешествий, организации кемпингов, рыбалки, охоты в разных погодных условиях. Габариты палатка отлично подойдут для размещения большой компании, а высота 180 см позволяет находиться внутри в полный рост. Палатка оборудована вентиляционными окнами и проклеенными швами, а на входе в спальное место установлена противомоскитная сетка. В конструкцию палатки входят большая внутренняя комната и огромный тамбур, свободно вмещающий , походную кухню и массивные рюкзаки. Материал внешнего тента и пола отлично защищает от влаги и ветра, а проклеенные швы не допускают проникновения внутрь палатки капель воды, а система вентиляции обеспечит нормальный воздухообмен. Палатка складывает в сумку, удобна при переноске и легко помещается в багажник машины.",
+    vendor_code: "0f68d2c4-7338-11ef-85ad-94de80dac257",
+    images: [
+        {
+            id: 28474,
+            user_id: 1,
+            name: null,
+            path: People,
+            createdAt: "2025-03-11T14:54:12.120Z",
+            updatedAt: "2025-03-11T14:54:12.120Z",
+            ItemImagesEntity: {
+                image_id: 28474,
+                item_id: 6855,
+                ordinal_number: 1,
+                shlack: null,
+                createdAt: "2025-03-11T14:54:12.288Z",
+                updatedAt: "2025-03-11T14:54:12.288Z"
+            }
+        },
+        {
+            id: 28475,
+            user_id: 1,
+            name: null,
+            path: People,
+            createdAt: "2025-03-11T14:54:12.120Z",
+            updatedAt: "2025-03-11T14:54:12.120Z",
+            ItemImagesEntity: {
+                image_id: 28474,
+                item_id: 6855,
+                ordinal_number: 3,
+                shlack: null,
+                createdAt: "2025-03-11T14:54:12.288Z",
+                updatedAt: "2025-03-11T14:54:12.288Z"
+            }
+        },
+        {
+            id: 28476,
+            user_id: 1,
+            name: null,
+            path: People,
+            createdAt: "2025-03-11T14:54:12.120Z",
+            updatedAt: "2025-03-11T14:54:12.120Z",
+            ItemImagesEntity: {
+                image_id: 28474,
+                item_id: 6855,
+                ordinal_number: 1,
+                shlack: null,
+                createdAt: "2025-03-11T14:54:12.288Z",
+                updatedAt: "2025-03-11T14:54:12.288Z"
+            }
+        }
+    ],
+    category: {
+        id: 2205,
+        user_id: 1,
+        status: 1,
+        slug: "palatki-letnie",
+        name: "Палатки летние",
+        title: "Палатки летние",
+        description: "Палатки летние",
+        meta_description: "Палатки летние",
+        createdAt: "2024-12-11T01:51:19.068Z",
+        updatedAt: "2025-05-04T01:46:26.798Z"
+    },
+    item1c: {
+        id: 641,
+        item_id: "0f68d2c4-7338-11ef-85ad-94de80dac257",
+        barcode: "2000721270353",
+        name: "Палатка четырехместная с тамбуром, размер палатки 245*215(спальное место),тамбур:110+100, ширина245",
+        default_meaning: {
+            name: "шт",
+            additional_info: {
+                code: "796 ",
+                fullname: "Штука",
+                international_abbreviation: "PCE"
+            }
+        },
+        status: "не удален",
+        prices: [
+            {
+                price: "11000.00",
+                ratio: "1",
+                currency: "руб",
+                priceType: {
+                    id: "c6089c8c-e475-11e6-ab07-94de8008860f",
+                    name: "Розничная",
+                    currency: "руб",
+                    taxation: {
+                        name: "НДС",
+                        includedInTheTotal: "false"
+                    }
+                },
+                fullString: "11 000 руб. за шт",
+                meaningName: "шт"
+            },
+            {
+                price: "11000.00",
+                ratio: "1",
+                currency: "руб",
+                priceType: {
+                    id: "d479acc8-76e4-11ee-b406-902b3479525b",
+                    name: "Цена для WB",
+                    currency: "руб",
+                    taxation: {
+                        name: "НДС",
+                        includedInTheTotal: "false"
+                    }
+                },
+                fullString: "11 000 руб. за шт",
+                meaningName: "шт"
+            },
+            {
+                price: "11000.00",
+                ratio: "1",
+                currency: "руб",
+                priceType: {
+                    id: "3bfcd8a2-d58c-11eb-bae7-902b3479525b",
+                    name: "Цена для озона",
+                    currency: "руб",
+                    taxation: {
+                        name: "НДС",
+                        includedInTheTotal: "false"
+                    }
+                },
+                fullString: "11 000 руб. за шт",
+                meaningName: "шт"
+            },
+            {
+                price: "10000.00",
+                ratio: "1",
+                currency: "руб",
+                priceType: {
+                    id: "a4239a47-e6a7-11e6-bb67-b8975a5f783b",
+                    name: "Закупочная",
+                    currency: "руб",
+                    taxation: {
+                        name: "НДС",
+                        includedInTheTotal: "false"
+                    }
+                },
+                fullString: "10 000 руб. за шт",
+                meaningName: "шт"
+            }
+        ],
+        retail_price: 11000,
+        count: 1,
+        section: 1,
+        createdAt: "2025-03-25T04:50:58.398Z",
+        updatedAt: "2025-05-04T12:40:06.391Z"
+    }
+}

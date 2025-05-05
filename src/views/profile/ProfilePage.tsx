@@ -16,6 +16,7 @@ import { AccountSettingsSection } from './Sections/AccountSettings/AccountSettin
 import { OrderListSection } from './Sections/OrderList/OrderListSection'
 import { AccountMessengerListSection } from './Sections/AccountMessengerListSection/AccountMessengerListSection'
 import { AccountMessengerSection } from './Sections/AccountMessengerSection/AccountMessengerSection'
+import { MyAdsSection } from './Sections/MyAdsSection/MyAdsSection'
 
 export const ProfilePage = () => {
 	const router = useRouter()
@@ -71,7 +72,7 @@ export const ProfilePage = () => {
 			// <div key={5}>section 5</div>,
 			// <div key={6}>section 6</div>,
 			<AccountSettingsSection key={3} />,
-			<div key={4}>section 5</div>,
+			<MyAdsSection key={4} />,
 			<AccountMessengerSection key={5} />,
 		]
 	}, [])

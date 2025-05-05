@@ -91,6 +91,11 @@ $mobile: 640px;
         height: 30px;
     }
 
+    &.noFavoriteCards {
+        background-color: #e6e6e6;
+        padding: 6px 13px;
+    }
+
     &.up {
         width: 49px;
         height: 49px;

@@ -9,14 +9,14 @@ interface ArrowsProps extends HTMLAttributes<HTMLSpanElement> { }
 export const PrevArrow = (props: ArrowsProps) => {
     return (
         <span {...props} className={clsx(styles.prev)}>
-            <LeftArrow />
+            {/* <LeftArrow /> */}
         </span>
     )
 }
 export const NextArrow = (props: ArrowsProps) => {
     return (
         <span {...props} className={clsx(styles.next)}>
-            <RightArrow />
+            {/* <RightArrow /> */}
         </span>
     )
 }

@@ -68,4 +68,11 @@ $mobile: 640px;
     & .navigation {
         border: 2px solid rgba(228, 228, 228, 1)
     }
+
+    & .formAds {
+        width: 357px !important;
+        height: 50px !important;
+        background-color: rgba(240, 240, 240, 1) !important;
+        border-radius: 10px;
+    }
 }
