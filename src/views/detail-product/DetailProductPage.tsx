@@ -17,6 +17,7 @@ import clsx from "clsx"
 import { removeTags } from "@/utils/removeTags"
 import { ImageFullScreenInfoModal } from "@/components/modals/ImageFullScreenInfoModal/ImageFullScreenInfoModal"
 import Star from '@/assets/images/star.png'
+import AvatarInDetali from '@/assets/images/avatarInDetali.png'
 
 export const DetailProductPage = () => {
 	const item = ITEM_DATA
@@ -384,16 +385,16 @@ export const DetailProductPage = () => {
 							</div> */}
 
 							<div className={styles.contacts}>
-								<p>Остались вопросы, нужна помощь? Звоните!</p>
-								<span className={clsx(styles.number, styles.phone_number)}>
-									<a href='tel:+79646034448'>8 (964) 603 4448</a>
-								</span>
-								<p>
-									или пишите в <span className={styles.whatsapp}>WhatsApp</span>
-								</p>
-								<span className={clsx(styles.number, styles.whatsapp_number)}>
-									<a href='tel:+79649184770'>8 (964) 918 4770</a>
-								</span>
+								<div className={styles.text_container}>
+									<p className={styles.name}>{item.user.name}</p>
+									<div className={styles.rating}>{item.user.rating}
+										{[...Array(item.user.rating)].map((_, index) => (
+											<ImageCustom key={index} src={Star} classNameImg={styles.img} />
+										))}<span> {item.user.revievs} отзывов</span>
+									</div>
+									<p>{item.user.data}</p>
+								</div>
+								<ImageCustom src={AvatarInDetali} classNameImg={styles.img} />
 							</div>
 						</div>
 					</div>

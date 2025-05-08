@@ -10,8 +10,9 @@ import Bmw from '@/assets/images/bmw.jpg'
 import { ABOUT, QUESTIONS, REVIEWS, RISKS, SELECTED_CARS, SERVICES, WHY_CHECKED, WHY_NEEDED, WORKS_SCHEME } from "@/components/dataTime/dataTime"
 import { Slider } from "@/components/slider/Slider"
 import { Button } from "@/components/ui/button/Button"
+import Icn1 from '@/assets/images/icn1.png'
 
-export const HomePage = () => {
+export const HomePage = ({ categoryData }: { categoryData: any }) => {
 
     return (
         <>
@@ -70,14 +71,14 @@ export const HomePage = () => {
                 <div className={styles.our_services}>
                     <h2>Наши услуги</h2>
                     <div className={styles.service_container}>
-                        {SERVICES.map((elem) => {
+                        {categoryData?.map((elem: any) => {
                             return (
                                 <div className={styles.service_block} key={elem.id}>
                                     <p className={styles.price}>{elem.price}</p>
                                     <h3>{elem.title}</h3>
                                     <a href={`/service/${elem.slug}`}>Перейти к предложениям</a>
-                                    <ImageCustom
-                                        classNameImg={styles.img}
+                                    <img
+                                        className={styles.img}
                                         src={elem.icon}
                                     />
                                 </div>

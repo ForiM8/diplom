@@ -1,4 +1,4 @@
-// import { authOptions } from '@/app/config/auth'
+import { authOptions } from '@/app/config/auth'
 import { AuthProvider } from '@/providers/SessionProvider'
 import { getServerSession } from 'next-auth'
 import { Roboto } from 'next/font/google'
@@ -15,12 +15,11 @@ export default async function SecureLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	// const session = await getServerSession(authOptions)
-	// const session = await getServerSession()
-	// console.log('session - ', session)
-	// if (!session?.user?.email) {
-	// 	redirect('/auth')
-	// }
+	const session = await getServerSession(authOptions)
+	console.log('session - ', session)
+	if (!session?.user?.email) {
+		redirect('/auth')
+	}
 	return (
 		<AuthProvider>
 			<div className='layout'>

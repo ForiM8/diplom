@@ -18,7 +18,7 @@ export const ImageCustom = ({
     height,
     ...props
 }: ImageCustomProps) => {
-    console.log('src - ', src)
+    // console.log('src - ', src)
     return (
         <div {...props} className={`relative ${props.className}`}>
             <Image
