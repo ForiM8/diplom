@@ -9,9 +9,25 @@ import { SELECT_SERVICES } from "@/components/dataTime/dataTime"
 import { Button } from "@/components/ui/button/Button"
 import { Input } from "@/components/ui/input/Input"
 import { ImageCustom } from "@/components/ui/ImageCustom"
+import { useEffect } from "react"
+import { useSession } from "next-auth/react"
+import userStore from "@/stores/user/UserStores"
+import { observer } from "mobx-react-lite"
 
-export const Header = () => {
+export const Header = observer(() => {
     const pathname = usePathname();
+    const { data: session, status } = useSession();
+    useEffect(() => {
+        if (status === 'loading') {
+            userStore.setSessionStatus('loading');
+        } else if (session?.user) {
+            userStore.setUser(session.user);
+            userStore.setSessionStatus('authenticated');
+        } else {
+            userStore.clearUser();
+            userStore.setSessionStatus('unauthenticated');
+        }
+    }, [session, status]);
 
     const handleChangeFilter = (selectedFilter: {
         value: string
@@ -36,20 +52,29 @@ export const Header = () => {
                                 <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
-                            <div className={styles.button_container}>
+                            {!userStore.user?.email ? (
+                                <div className={styles.button_container}>
+                                    <Button
+                                        onClick={() => redirect(`/auth`)}
+                                        className={styles.btn_size}
+                                        variant="border_blue">
+                                        Вход
+                                    </Button>
+                                    <Button
+                                        onClick={() => redirect(`/auth`)}
+                                        className={styles.btn_size}
+                                        variant="blue">
+                                        Регистрация
+                                    </Button>
+                                </div>
+                            ) : (
                                 <Button
-                                    onClick={() => redirect(`/auth`)}
-                                    className={styles.btn_size}
-                                    variant="border_blue">
-                                    Вход
-                                </Button>
-                                <Button
-                                    onClick={() => redirect(`/auth`)}
+                                    onClick={() => redirect(`/profile/settings`)}
                                     className={styles.btn_size}
                                     variant="blue">
-                                    Регистрация
+                                    Профиль
                                 </Button>
-                            </div>
+                            )}
                         </div>
                         <div className={styles.main_container}>
                             <ImageCustom
@@ -105,24 +130,35 @@ export const Header = () => {
                                 <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
-                            <div className={styles.button_container}>
+                            {!userStore.user?.email ? (
+                                <div className={styles.button_container}>
+                                    <>
+                                        <Button
+                                            onClick={() => redirect(`/auth`)}
+                                            className={styles.btn_size}
+                                            variant="border_blue">
+                                            Вход
+                                        </Button>
+                                        <Button
+                                            onClick={() => redirect(`/auth`)}
+                                            className={styles.btn_size}
+                                            variant="blue">
+                                            Регистрация
+                                        </Button>
+                                    </>
+                                </div>
+                            ) : (
                                 <Button
-                                    onClick={() => redirect(`/auth`)}
-                                    className={styles.btn_size}
-                                    variant="border_blue">
-                                    Вход
-                                </Button>
-                                <Button
-                                    onClick={() => redirect(`/auth`)}
+                                    onClick={() => redirect(`/profile/settings`)}
                                     className={styles.btn_size}
                                     variant="blue">
-                                    Регистрация
+                                    Профиль
                                 </Button>
-                            </div>
+                            )}
                         </div>
                     </Section>
                 </header>
             )}
         </>
     )
-}
+})

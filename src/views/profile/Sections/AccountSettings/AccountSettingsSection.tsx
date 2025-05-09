@@ -6,8 +6,10 @@ import { useCallback, useEffect, useState } from 'react'
 import AvatarImage from '../../../../assets/standartAvatar/standartAvatar.png'
 import styles from './AccountSettingsSection.module.scss'
 import { User } from '@/types/User.types'
+import userStore from '@/stores/user/UserStores'
+import { observer } from 'mobx-react-lite'
 
-export const AccountSettingsSection = () => {
+export const AccountSettingsSection = observer(() => {
     const [user, setUser] = useState<User>()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [username, setUsername] = useState('')
@@ -29,7 +31,7 @@ export const AccountSettingsSection = () => {
             <div className={styles.user_avatar_container}>
                 <ImageCustom classNameImg={styles.avatar_image} src={AvatarImage} />
                 <div>
-                    <p className={styles.username}>Максим редька</p>
+                    <p className={styles.username}>{userStore?.user?.name}</p>
                     <p className={styles.date_registered}>Дата регистрации: 10.06.2024</p>
                 </div>
 
@@ -67,4 +69,4 @@ export const AccountSettingsSection = () => {
             </div>
         </>
     )
-};
+});

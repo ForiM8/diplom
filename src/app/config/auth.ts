@@ -63,6 +63,7 @@ export const authOptions: AuthOptions = {
 
                     const user = {
                         email: credentials.email,
+                        name: userTokens.user.name,
                         accessToken: userTokens.result.accessToken,
                         accessTokenExpires: parseJwt(userTokens.result.accessToken)?.exp,
                         refreshToken: userTokens.result.refreshToken,
