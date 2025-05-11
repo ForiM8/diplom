@@ -63,7 +63,11 @@ export const authOptions: AuthOptions = {
 
                     const user = {
                         email: credentials.email,
+                        id: userTokens.user.id,
                         name: userTokens.user.name,
+                        phone: userTokens.user.phone,
+                        city: userTokens.user.city,
+                        password: userTokens.user.password,
                         accessToken: userTokens.result.accessToken,
                         accessTokenExpires: parseJwt(userTokens.result.accessToken)?.exp,
                         refreshToken: userTokens.result.refreshToken,

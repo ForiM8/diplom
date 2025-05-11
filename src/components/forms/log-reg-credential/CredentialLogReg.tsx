@@ -63,21 +63,6 @@ export const CredentialLogReg = () => {
         watch,
     } = useForm<AuthFormData<typeof actionVariable>>()
 
-    const syncLocalBasketWithServer = async () => {
-        const basket: ProductInBasket[] = JSON.parse(localStorage.getItem('basket') || '[]');
-        console.log('basket - ', basket)
-        if (basket.length > 0) {
-            for (const item of basket) {
-                const data = {
-                    item_id: item.id,
-                    count: item.count
-                };
-                console.log('data - ', data)
-            }
-            localStorage.removeItem('basket');
-        }
-    };
-
     const handleRegistrationError = (errorCode: string): string => {
         const errorMessages: { [key: string]: string } = {
             THIS_EMAIL_ALREADY_USED: "Этот адрес электронной почты уже используется. Попробуйте восстановить пароль.",
@@ -90,7 +75,13 @@ export const CredentialLogReg = () => {
         console.log('actionVariable - ', actionVariable)
         try {
             if (actionVariable === 'register') {
-                const res = await userCreate(data);
+                const dataUser = {
+                    email: data.email,
+                    name: data.name,
+                    rating: 0,
+                    avatar: ''
+                }
+                const res = await userCreate(dataUser);
                 console.log('res 0 - ', res)
                 if (res.result) {
                     setActionVariable('login');
@@ -127,7 +118,6 @@ export const CredentialLogReg = () => {
                         }
                     );
                 } else {
-                    await syncLocalBasketWithServer();
                     router.replace('/profile/settings')
                 }
             } else {

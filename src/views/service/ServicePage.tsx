@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button/Button'
 import People from '@/assets/images//heart_border_black.png'
 import Star from '@/assets/images/star.png'
 
-export const ServicePage = ({ slug }: { slug: string }) => {
+export const ServicePage = ({ slug, productData }: { slug: string, productData: any[] }) => {
 
     return (
         <div className={styles.bg}>
@@ -23,13 +23,14 @@ export const ServicePage = ({ slug }: { slug: string }) => {
                     <div className={styles.container}>
                         <h2>Цены на автоподбор легковых автомобилей</h2>
                         <div className={styles.service_container}>
-                            {SERVICE_BLOCK.map((elem, i) => {
+                            {productData.map((elem, i) => {
                                 return (
                                     <div className={styles.service_block} key={i}>
-                                        <ImageCustom
+                                        {/* <ImageCustom
                                             classNameImg={styles.img}
-                                            src={elem.icon}
-                                        />
+                                            src={elem.image}
+                                        /> */}
+                                        <img className={styles.img} src={elem.image} alt="" />
                                         <div className={styles.service_block}>
                                             <div className={styles.text_container}>
                                                 <div className={styles.head}>
@@ -52,17 +53,17 @@ export const ServicePage = ({ slug }: { slug: string }) => {
                                         </div>
                                         <div className={styles.master_info}>
                                             <div className={styles.main}>
-                                                <p className={styles.name}>{elem.name}</p>
+                                                <p className={styles.name}>{elem.user.name}</p>
                                                 <div className={styles.rating}>
                                                     <div className={styles.stars_container}>
                                                         <p>{elem.rating}</p>
                                                         <div className={styles.stars}>
-                                                            {[...Array(elem.rating)].map((_, index) => (
+                                                            {[...Array(5)].map((_, index) => (
                                                                 <ImageCustom key={index} src={Star} classNameImg={styles.img} />
                                                             ))}
                                                         </div>
                                                     </div>
-                                                    <p>{elem.reviews} отзывов</p>
+                                                    <p>{elem.reviews ? elem.reviews : 'нет'} отзывов</p>
                                                 </div>
                                                 <p className={styles.document}>Документы проверены</p>
                                             </div>

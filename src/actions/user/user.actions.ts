@@ -21,7 +21,7 @@ export const userCreate = async (data: any) => {
 export const userUpdate = async (data: any) => {
 
     console.log('userUpdate with data:', data);
-    const res = await apiSecure(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
+    const res = await apiSecure(`${process.env.NEXT_PUBLIC_API_URL}/patch/user`, {
         method: 'PATCH',
         body: JSON.stringify(data),
     });
@@ -36,9 +36,10 @@ export const userUpdate = async (data: any) => {
 };
 
 
-export const userGet = async () => {
-    const res = await apiSecure(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
-        method: 'GET',
+export const userGet = async (data: any) => {
+    const res = await apiSecure(`${process.env.NEXT_PUBLIC_API_URL}/get/user`, {
+        method: 'POST',
+        body: JSON.stringify(data),
     });
 
     const errorResult = await ErrorObjectSetup(res)

@@ -8,22 +8,82 @@ import styles from './AccountSettingsSection.module.scss'
 import { User } from '@/types/User.types'
 import userStore from '@/stores/user/UserStores'
 import { observer } from 'mobx-react-lite'
+import { userGet, userUpdate } from '@/actions/user/user.actions'
+import { toast } from 'react-toastify'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
-export const AccountSettingsSection = observer(() => {
-    const [user, setUser] = useState<User>()
+export const AccountSettingsSection = observer(({ userData }: { userData: User }) => {
+    const router = useRouter()
+    // const [user, setUser] = useState<User>()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
-    const [nickname, setNickname] = useState('')
+    const [city, setCity] = useState('')
+    const { setUser, clearUser } = userStore
+
+    const userGetByData = async () => {
+        const result = await userGet({ email: userStore?.user?.email })
+        console.log('result - ', result)
+        clearUser()
+        setUser(result.result)
+    }
+    console.log('userStore - ', userStore)
+    useEffect(() => {
+        if (userStore?.user?.email) {
+            userGetByData()
+        }
+
+        setPhoneNumber(userStore?.user?.phone || '');
+        setUsername(userStore?.user?.name || '');
+        setEmail(userStore?.user?.email || '');
+        setCity(userStore?.user?.city || '');
+    }, [userStore?.user?.email]);
 
     const saveUserSettings = async () => {
         const data = {
-            id: user?.id,
-            email: email,
+            id: '681e1efe5f10f79077f1da50',
+            email,
             phone: phoneNumber,
             name: username,
-
+            city: city,
+            password: userStore?.user?.password
         };
+        try {
+            await userUpdate(data);
+            const result = await signIn('login', {
+                email: data.email,
+                password: data.password,
+                callbackUrl: '/profile/settings',
+                redirect: false,
+            });
+            console.log('result 0 - ', result)
+            if (result?.error) {
+                // toggleLoader()
+                toast.error(
+                    <div>
+                        Неверные введенные данные
+                    </div>,
+                    {
+                        closeOnClick: true,
+                    }
+                );
+            } else {
+                router.replace('/profile/settings')
+            }
+            toast.success('Данные успешно сохранены');
+        } catch (error) {
+            console.error('Failed to update user data:', error);
+            toast.error('Ошибка при сохранении данных');
+        }
+    };
+
+    const FormatDate = (date: Date) => {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+
+        return `${day}.${month}.${year}`;
     };
 
     return (
@@ -58,9 +118,9 @@ export const AccountSettingsSection = observer(() => {
                 />
                 <Input
                     variant='form'
-                    label='Никнейм'
-                    value={nickname}
-                    onChange={(e) => setNickname(e.target.value)}
+                    label='Город'
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                 />
             </div>
 

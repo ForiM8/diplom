@@ -4,6 +4,9 @@ interface User {
     name?: string | null;
     email?: string | null;
     image?: string | null;
+    city?: string | null;
+    phone?: string | null;
+    password?: string | null
 }
 
 class UserStore {

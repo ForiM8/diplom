@@ -18,7 +18,7 @@ import { AccountMessengerListSection } from './Sections/AccountMessengerListSect
 import { AccountMessengerSection } from './Sections/AccountMessengerSection/AccountMessengerSection'
 import { MyAdsSection } from './Sections/MyAdsSection/MyAdsSection'
 
-export const ProfilePage = () => {
+export const ProfilePage = ({ user }: { user: User }) => {
 	const router = useRouter()
 	const profileSections = useMemo(() => {
 		return [
@@ -71,7 +71,7 @@ export const ProfilePage = () => {
 
 			// <div key={5}>section 5</div>,
 			// <div key={6}>section 6</div>,
-			<AccountSettingsSection key={3} />,
+			<AccountSettingsSection key={3} userData={user} />,
 			<MyAdsSection key={4} />,
 			<AccountMessengerSection key={5} />,
 		]

@@ -7,6 +7,7 @@ export type CreateUser = {
 
 export type User = {
     city_id: number
+    city: string
     createdAt: string
     email: string
     id: number
@@ -27,4 +28,5 @@ export type User = {
 export type LoginUser = {
     email: string
     password: string
+    name: string
 }
