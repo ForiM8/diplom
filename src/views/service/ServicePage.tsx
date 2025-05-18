@@ -8,33 +8,46 @@ import { SERVICE_BLOCK, SERVICES } from '@/components/dataTime/dataTime'
 import { Button } from '@/components/ui/button/Button'
 import People from '@/assets/images//heart_border_black.png'
 import Star from '@/assets/images/star.png'
+import { useRouter } from 'next/navigation'
+import { removeTags } from '@/utils/removeTags'
 
-export const ServicePage = ({ slug, productData }: { slug: string, productData: any[] }) => {
+interface Category {
+    _id: string;
+    id: number;
+    title: string;
+    price: number;
+    icon: string;
+    slug: string;
+}
 
+export const ServicePage = ({ productData, categoryData }: { productData: any[], categoryData: Category }) => {
+    console.log('categoryData - ', categoryData)
+    const router = useRouter()
     return (
         <div className={styles.bg}>
             <Section>
                 <div className={styles.main_container}>
 
-                    <Crumbs span={'Услуги'} slug={slug} />
+                    <Crumbs span={'Услуги'} slug={categoryData?.title} />
 
-                    <h1>Автоподбор легковых автомобилей</h1>
+                    <h1>{categoryData?.title}</h1>
 
                     <div className={styles.container}>
                         <h2>Цены на автоподбор легковых автомобилей</h2>
                         <div className={styles.service_container}>
-                            {productData.map((elem, i) => {
+                            {productData?.map((elem, i) => {
                                 return (
                                     <div className={styles.service_block} key={i}>
                                         {/* <ImageCustom
                                             classNameImg={styles.img}
                                             src={elem.image}
                                         /> */}
+
                                         <img className={styles.img} src={elem.image} alt="" />
                                         <div className={styles.service_block}>
                                             <div className={styles.text_container}>
                                                 <div className={styles.head}>
-                                                    <h3>{elem.title}</h3>
+                                                    <h3 onClick={() => router.replace(`/product/${elem._id}`)}>{elem.title}</h3>
                                                     <Button
                                                         className={styles.btn_size}
                                                         variant="inFavorite">
@@ -45,10 +58,12 @@ export const ServicePage = ({ slug, productData }: { slug: string, productData: 
                                                     </Button>
                                                 </div>
                                                 <div className={styles.service}>
-                                                    <p className={styles.price}>{elem.description}</p>
+                                                    <p className={styles.price}>{elem.title}</p>
                                                     <p >{elem.price}</p>
                                                 </div>
-                                                <p>{elem.text}</p>
+                                                {removeTags(`${elem.description.slice(
+                                                    0, 900
+                                                )}...`)}
                                             </div>
                                         </div>
                                         <div className={styles.master_info}>

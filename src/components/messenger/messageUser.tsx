@@ -1,7 +1,5 @@
 'use client'
-import styles from '@/views/profile/Sections/AccountMessengerSection/AccountMessengerSection.module.scss'
-
-
+import styles from '@/views/messenger/MessengerPage.module.scss'
 
 export const MessageUser = ({ text, date }: { text: string; date: string }) => {
   return (

@@ -11,16 +11,20 @@ import styles from './DetailProductPage.module.scss'
 import { Button } from "@/components/ui/button/Button"
 import { Section } from "@/components/layout/Section/Section"
 import { ITEM_DATA } from "@/components/dataTime/dataTime"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { formatCurrencyRub } from "@/utils/formatCurrencyRub"
 import clsx from "clsx"
 import { removeTags } from "@/utils/removeTags"
 import { ImageFullScreenInfoModal } from "@/components/modals/ImageFullScreenInfoModal/ImageFullScreenInfoModal"
 import Star from '@/assets/images/star.png'
 import AvatarInDetali from '@/assets/images/avatarInDetali.png'
+import userStore from "@/stores/user/UserStores"
+import { orderCreate } from "@/actions/order/order.actions"
+import { Product } from "@/types/Product.types"
+import { Orders } from "@/types/Order.types"
+import { messengerCreate } from "@/actions/messenger/messenger.action"
 
-export const DetailProductPage = () => {
-	const item = ITEM_DATA
+export const DetailProductPage = ({ item, orders }: { item: Product, orders: Orders[] }) => {
 	const [fullScreenImage, setFullScreenImage] = useState(false)
 	const [isUnauthorization, setIsUnauthorization] = useState(false)
 	const [selectImageIndex, setSelectImageIndex] = useState(0)
@@ -30,6 +34,10 @@ export const DetailProductPage = () => {
 	const [statDescription, setStatusDescription] = useState<boolean>(true)
 	const [favorite, setFavorite] = useState([])
 	const [dateTime, setDateTime] = useState<number>()
+	const [ordersFinish, setOrdersFinish] = useState<Orders[]>()
+	const [thisOrderCreate, setThisOrderCreate] = useState<boolean>(false)
+
+	// console.log('orders - ', orders)
 	// const [itemIsBaked, setItemIsBasked] = useState<ProductInBasket | null>(null)
 	// const [countItem, setCountItem] = useState(0)
 
@@ -56,6 +64,26 @@ export const DetailProductPage = () => {
 	// )
 	console.log('item - ', item)
 
+	// const checkProductIsOrder = () => {
+	// 	orders.
+	// } 
+	const handleFilterOrder = useMemo(() => {
+		console.log('хуй')
+		const oredrsFilter = orders.filter((elem: Orders) => elem.item._id === item._id);
+		if (oredrsFilter.some((elem: Orders) => elem.customer._id === userStore?.user?._id)) {
+			return true
+		} else {
+			return false
+		}
+
+	}, [userStore?.user])
+
+	// useEffect(() => {
+	// 	handleFilterOrder()
+	// }, [userStore?.user])
+
+	console.log('thisOrderCreate - ', thisOrderCreate)
+
 	const getBarnaulTime = () => {
 		return new Intl.DateTimeFormat('ru-RU', {
 			timeZone: 'Asia/Barnaul',
@@ -66,6 +94,27 @@ export const DetailProductPage = () => {
 			minute: '2-digit',
 			second: '2-digit',
 		}).format(new Date())
+	}
+
+	const HandleOrderCreate = (item: Product) => {
+		const dataOrder = {
+			item: item,
+			customer: userStore?.user,
+			data: getBarnaulTime()
+		}
+		const result = orderCreate(dataOrder)
+		console.log('result - ', result)
+	}
+
+	const HandleMessengerCreate = (item: Product) => {
+		const dataOrder = {
+			item: item,
+			customer: userStore?.user,
+			message: [],
+			data: getBarnaulTime()
+		}
+		const result = messengerCreate(dataOrder)
+		console.log('messengerResult - ', result)
 	}
 
 	const calculateDate = (
@@ -118,62 +167,49 @@ export const DetailProductPage = () => {
 				arrowNext={false}
 				arrowPrev={false}
 				items={[
-					...item.images
-						.sort(
-							(a, b) =>
-								a.ItemImagesEntity.ordinal_number -
-								b.ItemImagesEntity.ordinal_number
-						)
-						.map((img: any, i: number) => (
-							<div className='relative' key={i}>
-								<Fullscreen
-									onClick={() => {
-										setFullScreenImage(true)
-										setSelectImageIndex(i)
-										document.body.style.paddingRight = '8px'
-										document.body.style.overflowY = 'hidden'
-									}}
-									className='size-[30px] !absolute z-20 top-0 
-								 right-0 cursor-pointer active:scale-[0.9] duration-200 ease-in-out'
-								/>
-								<ImageCustom
-									key={i}
-									onClick={() => {
-										setFullScreenImage(true)
-										setSelectImageIndex(i)
-										document.body.style.paddingRight = '8px'
-										document.body.style.overflowY = 'hidden'
-									}}
-									className='w-[600px] h-[400px] !object-contain mb-[10px] cursor-pointer'
-									src={img.path}
-									alt='img'
-								/>
-								{/* <div
+					...item.images.map((img: any, i: number) => (
+						<div className={styles.container} key={i}>
+							<Fullscreen
+								onClick={() => {
+									setFullScreenImage(true)
+									setSelectImageIndex(i)
+									document.body.style.paddingRight = '8px'
+									document.body.style.overflowY = 'hidden'
+								}}
+								className={styles.fullscreen}
+							/>
+							<img
+								key={i}
+								onClick={() => {
+									setFullScreenImage(true)
+									setSelectImageIndex(i)
+									document.body.style.paddingRight = '8px'
+									document.body.style.overflowY = 'hidden'
+								}}
+								className={styles.images}
+								src={img.image}
+								alt='img'
+							/>
+							{/* <div
 									className='absolute bg-[#e31837] top-[40px] right-[0px] 
 							text-white text-center pl-[5px] pr-[5px] rounded-[5px]'
 								>
 									-{countSale(item.price)[1]}%
 								</div> */}
-							</div>
-						)),
+						</div>
+					)),
 				]}
 				pagination
 				customPagination={[
-					...item.images
-						.sort(
-							(a, b) =>
-								a.ItemImagesEntity.ordinal_number -
-								b.ItemImagesEntity.ordinal_number
-						)
-						.map((img: any, i: number) => (
-							<ImageCustom
-								key={i}
-								className='border-[2px] cursor-pointer w-[115px] h-[90px] active:scale-[0.95]
-							 duration-300 ease-in-out'
-								src={img.path}
-								alt='img'
-							/>
-						)),
+					...item.images.map((img: any, i: number) => (
+						<img
+							key={i}
+							className='border-[2px] cursor-pointer w-[115px] h-[90px] active:scale-[0.95]
+			 			 duration-300 ease-in-out'
+							src={img.image}
+							alt='img'
+						/>
+					)),
 				]}
 			/>
 		)
@@ -245,17 +281,17 @@ export const DetailProductPage = () => {
 						{/* SLIDER PHOTO PRODUCT  */}
 						<div className={styles.images}>{itemImages}</div>
 						<div className={styles.info}>
-							<h2 className={styles.name}>{item.name}</h2>
+							<h2 className={styles.name}>{item.title}</h2>
 							<div className={styles.buy_statictic}>
 								<div className={styles.sales_count}>
 									<div className={styles.rating}>
-										{[...Array(item.rating)].map((_, index) => (
+										{[...Array(item.user.rating)].map((_, index) => (
 											<ImageCustom key={index} src={Star} classNameImg={styles.img} />
 										))}
 									</div>
 									Купили более
 									<span className='mx-[5px] font-semibold'>
-										<b>{Math.round(item.id / 50)}</b>
+										<b>{Math.round((item.user.rating) / 2.4)}</b>
 									</span>
 									раз
 								</div>
@@ -263,7 +299,7 @@ export const DetailProductPage = () => {
 							<div className={styles.prices}>
 								<div>
 									<span className={styles.discount_price}>
-										от {formatCurrencyRub(item.price)}
+										от {formatCurrencyRub(Number(item.price))}
 									</span>
 									{/* <s className={styles.price}>{countSale(item.price)[0]}</s> */}
 								</div>
@@ -287,25 +323,18 @@ export const DetailProductPage = () => {
 							</div> */}
 							<div className={styles.options}>
 								<div className={styles.button_container}>
-
+									{handleFilterOrder ? (
+										<div>хуй</div>
+									) : (
+										<Button
+											onClick={() => HandleOrderCreate(item)}
+											className={styles.recycle_button}
+										>
+											В корзину
+										</Button>
+									)}
 									<Button
-										// onClick={() => addDataInBasket({
-										// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-										// 	price: item.price, description: item.description, images: item.images[0].path,
-										// 	amount: item.amount,
-										// 	show_if_no_count: item.settings.show_if_no_count
-										// })}
-										className={styles.recycle_button}
-									>
-										Оформить заявку
-									</Button>
-									<Button
-										// onClick={() => addDataInBasket({
-										// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-										// 	price: item.price, description: item.description, images: item.images[0].path,
-										// 	amount: item.amount,
-										// 	show_if_no_count: item.settings.show_if_no_count
-										// })}
+										onClick={() => HandleMessengerCreate(item)}
 										className={styles.recycle_button}
 									>
 										Написать
@@ -386,13 +415,13 @@ export const DetailProductPage = () => {
 
 							<div className={styles.contacts}>
 								<div className={styles.text_container}>
-									<p className={styles.name}>{item.user.name}</p>
-									<div className={styles.rating}>{item.user.rating}
-										{[...Array(item.user.rating)].map((_, index) => (
+									<p className={styles.name}>{item?.user?.name}</p>
+									<div className={styles.rating}>{item?.user?.rating}
+										{[...Array(item?.user?.rating)].map((_, index) => (
 											<ImageCustom key={index} src={Star} classNameImg={styles.img} />
-										))}<span> {item.user.revievs} отзывов</span>
+										))}<span> {item?.user?.reviews} отзывов</span>
 									</div>
-									<p>{item.user.data}</p>
+									<p>{item?.user?.data}</p>
 								</div>
 								<ImageCustom src={AvatarInDetali} classNameImg={styles.img} />
 							</div>

@@ -29,17 +29,27 @@ export const CreationAds = ({ categoryData }: { categoryData: any }) => {
         watch,
     } = useForm<CreationAds>()
 
+    const convertToHtmlTags = (text: string): string => {
+        let htmlText = text.replace(/\./g, '<span class="dot">.</span>');
+        htmlText = htmlText.replace(/,/g, '<span class="comma">,</span>');
+        htmlText = htmlText.replace(/\n/g, '<br />');
+
+        return htmlText;
+    };
     const onSubmit = async (data: CreationAds) => {
         console.log('НАЧАЛО')
+        const dataCreate = {
+            title: data.title,
+            description: convertToHtmlTags(data.description),
+            price: data.price,
+            images: [{
+                image: data.image
+            }],
+            categorySlug: categoryId,
+            user: userStore?.user
+        }
         try {
-            const result = await productCreate({
-                title: data.title,
-                description: data.description,
-                price: data.price,
-                image: data.image,
-                categorySlug: categoryId,
-                user: userStore?.user
-            });
+            const result = await productCreate(dataCreate);
             console.log('result 0 - ', result)
             if (result?.error) {
                 // toggleLoader()

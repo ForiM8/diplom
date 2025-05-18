@@ -6,6 +6,9 @@ import { MessageСompanion } from "@/components/messenger/MessageСompanion";
 import EmojiPicker from "emoji-picker-react";
 import { useEffect, useRef, useState } from "react";
 import styles from './AccountMessengerSection.module.scss';
+import userStore from "@/stores/user/UserStores";
+import { messengerGetByUser } from "@/actions/messenger/messenger.action";
+import { MessageDocument } from "@/types/messenger.types";
 
 export const AccountMessengerSection = () => {
     const formatDate = (timestamp: any) => {
@@ -26,8 +29,6 @@ export const AccountMessengerSection = () => {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.right}>
-
-
                 {GROUPS_DATA.map((group, i) => {
                     if (group.id === 0) {
                         return (
@@ -55,9 +56,7 @@ export const AccountMessengerSection = () => {
                                         </div>
 
                                     </div>
-
                                 </div>
-
                                 <div className={styles.mainMessenger}>
                                     {group.text.map((message) => {
                                         if (message.name) {

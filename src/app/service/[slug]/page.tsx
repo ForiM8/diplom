@@ -1,3 +1,4 @@
+import { categoryGetBySlug } from '@/actions/categories/category.action';
 import { itemGetByCategory } from '@/actions/products/products.action';
 import { withErrorHandler } from '@/utils/withErrorHandler';
 import { HomePage } from '@/views/home/HomePage'
@@ -13,5 +14,8 @@ export default async function Service({ params }: { params: { slug: string } }) 
     const { data: productData, error: resultError } = await withErrorHandler(() =>
         itemGetByCategory(params?.slug)
     )
-    return <ServicePage slug={params?.slug} productData={productData?.result} />
+    const { data: categoryData, error: categoryError } = await withErrorHandler(() =>
+        categoryGetBySlug(params?.slug)
+    )
+    return <ServicePage productData={productData?.result} categoryData={categoryData?.result} />
 }

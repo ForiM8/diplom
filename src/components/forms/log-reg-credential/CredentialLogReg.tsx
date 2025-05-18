@@ -12,7 +12,6 @@ import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import styles from './CredentialLogReg.module.scss'
-import { ProductInBasket } from '@/types/Product.types'
 import { useRouter } from 'next/navigation'
 import { userCreate } from '@/actions/user/user.actions'
 import { login } from '@/actions/auth/auth.action'
@@ -79,7 +78,8 @@ export const CredentialLogReg = () => {
                     email: data.email,
                     name: data.name,
                     rating: 0,
-                    avatar: ''
+                    avatar: '',
+                    reviews: 0,
                 }
                 const res = await userCreate(dataUser);
                 console.log('res 0 - ', res)

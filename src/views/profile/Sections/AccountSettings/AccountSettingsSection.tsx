@@ -42,7 +42,7 @@ export const AccountSettingsSection = observer(({ userData }: { userData: User }
 
     const saveUserSettings = async () => {
         const data = {
-            id: '681e1efe5f10f79077f1da50',
+            id: userStore?.user?._id,
             email,
             phone: phoneNumber,
             name: username,

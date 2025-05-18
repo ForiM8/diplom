@@ -31,3 +31,32 @@ export const itemGetByCategory = async (
     }
     return res.json()
 }
+
+export const itemGetById = async (
+    slug: string,
+) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/get/productsById/${slug}`
+    const res = await api(url, {
+        method: 'GET',
+    })
+    const errorResult = await ErrorObjectSetup(res)
+    if (errorResult?.error) {
+        return errorResult
+    }
+    return res.json()
+}
+
+export const itemGetByUser = async (
+    slug?: string,
+) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/get/products/userId/${slug}`
+
+    const res = await api(url, {
+        method: 'GET',
+    })
+    const errorResult = await ErrorObjectSetup(res)
+    if (errorResult?.error) {
+        return errorResult
+    }
+    return res.json()
+}

@@ -8,10 +8,10 @@ import styles from './OrderItem.module.scss'
 import Trash from '@/assets/images/trash.png'
 import { Button } from '@/components/ui/button/Button'
 import { toast } from 'react-toastify'
-import { DeliveryMethodEnumEn, OrderItemType, OrderStatusEnum } from '@/types/Order.types'
+import { DeliveryMethodEnumEn, OrderItemType, Orders, OrderStatusEnum } from '@/types/Order.types'
 
 interface OrdersItemType {
-	item: OrderItemType
+	item: Orders
 	mutate?: () => void
 }
 
@@ -80,11 +80,8 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 		},
 	]
 	const totalPrice = useMemo(() => {
-		let total = 0
-		item?.orderItems.forEach((product: any) => {
-			total += product.item.price * product.count
-		})
-		return total
+		let total = item.item.price
+		return Number(total)
 	}, [item])
 
 	return (
@@ -93,12 +90,10 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 				<div className={styles.container_head}>
 					<div className={styles.head}>
 						<h1 className={styles.date_delivery}>
-							Заказ от {item?.date_delivery ? item?.date_delivery?.slice(0, 10) : 'нет данных'}
+							Заказ от {item?.data ? item?.data?.slice(0, 10) : 'нет данных'}
 						</h1>
 
 					</div>
-
-					<p className={styles.order_id}>{item?.order_number}</p>
 				</div>
 				<div className={styles.price_info}>
 					<p className={styles.price}>{formatCurrencyRub(totalPrice)}</p>
@@ -109,17 +104,12 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 				<div className={styles.container_status}>
 					<div
 						className={clsx(styles.status_title, {
-							[styles.bg_gray]: item?.delivery_status === OrderStatusEnum.New,
-							[styles.bg_blue]: item?.delivery_status === OrderStatusEnum.InDelivery,
-							[styles.bg_green]: item?.delivery_status === OrderStatusEnum.ReadyToPickUp || item?.delivery_status === OrderStatusEnum.Delivered,
-							[styles.bg_red]: item?.delivery_status === OrderStatusEnum.Canceled,
+
+							[styles.bg_green]: 1 === 1
+
 						})}
 					>
-						{deliveryInfo.find(
-							(deliveryItem) =>
-								deliveryItem.status === item.delivery_status &&
-								deliveryItem.delivery_method === item.delivery_method
-						)?.value}
+						В работе
 					</div>
 
 
@@ -141,18 +131,17 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 						<p>i</p>
 					</div>
 				</div>
-				{item?.delivery_status !== OrderStatusEnum.Canceled && item?.delivery_status !== OrderStatusEnum.InDelivery && item?.delivery_status !== OrderStatusEnum.Delivered && (
-					<Button
 
-						className={styles.trash}
-					>
-						{/* <ImageCustom
+				<Button
+
+					className={styles.trash}
+				>
+					{/* <ImageCustom
 						className='w-[25px] h-[25px]'
 						src={Trash}
 					/> */}
-						Отменить
-					</Button>
-				)}
+					Отменить
+				</Button>
 			</div>
 			<div className={styles.order_items}>
 				<div className={styles.order_items_list}>
@@ -161,7 +150,7 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 						arrowNext={false}
 						arrowPrev={false}
 						items={[
-							...item?.orderItems?.map((item, i) => (
+							...item?.item?.map((item, i) => (
 								<div className={styles.order_item} key={i}>
 									<a href={`/product/${item.item.slug}`}>
 										<ImageCustom

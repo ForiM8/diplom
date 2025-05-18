@@ -33,11 +33,11 @@ export const ImageFullScreenInfoModal = ({
 							settings={{ slidesPerView: 1, spaceBetween: 20, initialSlide: selectImageIndex }}
 							arrowNext={true}
 							arrowPrev={true}
-							items={item.images.sort((a: any, b: any) => a.ItemImagesEntity.ordinal_number - b.ItemImagesEntity.ordinal_number).map((img: any, i: any) => (
+							items={item.images.map((img: any, i: any) => (
 								<div className='relative' key={i}>
-									<ImageCustom
+									<img
 										className='w-[950px] h-[650px] bg-[#fff] rounded-[10px]'
-										src={img.path}
+										src={img.image}
 										alt='img'
 									/>
 								</div>
@@ -56,7 +56,7 @@ export const ImageFullScreenInfoModal = ({
 								{formatCurrencyRub(item.price)}
 							</p>
 						</div>
-						<p>{removeTags(item.description)}</p>
+						{removeTags(item.description)}
 					</div>
 				</div>
 			</Section>

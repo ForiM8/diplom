@@ -20,45 +20,31 @@ export async function categoryGetAll() {
     return res.json()
 }
 
-export const categoryGetTreeById = async (id: string | number) => {
-    const res = await api(
-        `${process.env.NEXT_PUBLIC_API_URL}/client/categories/child/${id}`,
-        {
-            method: 'GET',
-            cache: 'no-store',
-        }
-    )
+// export const categoryGetTreeById = async (id: string | number) => {
+//     const res = await api(
+//         `${process.env.NEXT_PUBLIC_API_URL}/client/categories/child/${id}`,
+//         {
+//             method: 'GET',
+//             cache: 'no-store',
+//         }
+//     )
 
-    const errorResult = await ErrorObjectSetup(res)
-    if (errorResult?.error) {
-        return errorResult
-    }
+//     const errorResult = await ErrorObjectSetup(res)
+//     if (errorResult?.error) {
+//         return errorResult
+//     }
 
-    return res.json()
-}
+//     return res.json()
+// }
 
 export const categoryGetBySlug = async (slug: string) => {
     const res = await api(
-        `${process.env.NEXT_PUBLIC_API_URL}/categories/${slug}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/get/category/${slug}`,
         {
             method: 'GET',
             cache: 'no-store',
         }
     )
-
-    const errorResult = await ErrorObjectSetup(res)
-    if (errorResult?.error) {
-        return errorResult
-    }
-
-    return res.json()
-}
-
-export const categoryGetBySlugSWR = async (url: string) => {
-    const res = await api(url, {
-        method: 'GET',
-        cache: 'no-store',
-    })
 
     const errorResult = await ErrorObjectSetup(res)
     if (errorResult?.error) {

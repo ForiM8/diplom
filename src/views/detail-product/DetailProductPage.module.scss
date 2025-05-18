@@ -15,6 +15,38 @@
     & .images {
       width: 604px;
 
+      .container {
+        position: relative;
+
+        .fullscreen {
+          width: 30px;
+          height: 30px;
+          position: absolute !important;
+          z-index: 20;
+          top: 0;
+          right: 0;
+          cursor: pointer;
+          transform: scale(0.9);
+          transition-duration: 200ms;
+          transition-timing-function: ease-in-out;
+
+
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        .images {
+          width: 100%;
+          height: 400px;
+          object-fit: contain !important;
+          margin-bottom: 10px;
+          cursor: pointer;
+        }
+      }
+
+
       & .main_photo {
         // @apply border-[2px] border-[#e5e5e5] mb-[8px] min-h-[420px]
       }

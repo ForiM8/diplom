@@ -1,5 +1,4 @@
 'use client'
-import { Product, ProductEdit, ProductInBasket, ProductInFavorite, ProductInResult } from '@/types/Product.types'
 import { formatCurrencyRub } from '@/utils/formatCurrencyRub'
 import clsx from 'clsx'
 import { FC, useEffect, useState } from 'react'
@@ -11,9 +10,33 @@ import { Minus, Plus } from 'lucide-react'
 import { count } from 'console'
 import { Button } from '@/components/ui/button/Button'
 import { ImageCustom } from '@/components/ui/ImageCustom'
+interface User {
+	name: string;
+	email: string;
+	phone: string;
+	city: string;
+	password: string;
+	accessToken: string;
+	accessTokenExpires: number;
+	refreshToken: string;
+	status: number;
+	iat: number;
+	exp: number;
+	jti: string;
+	error: string;
+}
 
+interface Product {
+	_id: string;
+	title: string;
+	description: string;
+	price: string;
+	image: string;
+	categorySlug: string;
+	user: User;
+}
 type Props = {
-	item: Product
+	item?: Product
 	// itemsInBasked?: ProductInResult[]
 	mutate?: () => void
 	MyAdsSection?: boolean
@@ -35,12 +58,12 @@ const itemsInFavorite = [
 export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 	const [isAction, setIsAction] = useState(false)
 	const isInBasked = itemsInBasked?.find(
-		(itemInBasked) => itemInBasked.item.id === item.id
+		(itemInBasked) => itemInBasked.item.id === Number(item?._id)
 	)
 	const isInFavorite = itemsInFavorite?.find(
-		(itemsInFavorite) => itemsInFavorite.id === item.id
+		(itemsInFavorite) => itemsInFavorite.id === Number(item?._id)
 	)
-
+	console.log('item [eq - ', item)
 	return (
 		<div className={styles.product_card}>
 			{isInFavorite ? (
@@ -72,12 +95,12 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 			)}
 			<div className={styles.image_container}>
 
-				<a href={`/product/${item.slug}`}>
-					{item.images.length ? (
-						<ImageCustom
+				<a href={`/product/${item?._id}`}>
+					{item?.image ? (
+						<img
 							onClick={() => setIsAction(true)}
-							classNameImg={styles.image}
-							src={item.images[0].path}
+							className={styles.image}
+							src={item.image}
 							alt='product-image'
 						/>
 					) : (
@@ -89,13 +112,13 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 				<div className={styles.main_text}>
 					<div className={styles.prices}>
 						<span className={styles.sale_price}>
-							{formatCurrencyRub(item.price)}
+							{formatCurrencyRub(Number(item?.price))}
 						</span>
 					</div>
-					<a href={`/product/${item.slug}`}>
+					<a href={`/product/${item?._id}`}>
 
-						<p title={item.name} className={styles.title}>{`${item.name.slice(
-							0, item.amount > 0 ? 43 : 63
+						<p title={item?.title} className={styles.title}>{`${item?.title.slice(
+							0, 43
 						)}...`}</p>
 					</a>
 
@@ -142,31 +165,21 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 							)
 
 						) : (
-							!MyAdsSection && (
-								item.settings.show_if_no_count === false && item.amount === 0 ? (
-									<Button
 
-										className={styles.recycle_button}
-										variant='muted'
-									>
-										Нет в наличии
-									</Button>
-								) : (
-									<>
-										<Button
-											// onClick={() => addDataInBasket({
-											// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-											// 	price: item.price, description: item.description, images: item.images[0].path,
-											// 	amount: item.amount
-											// })}
-											className={styles.recycle_button}
-										>
-											В корзину
-										</Button>
+							<>
+								<Button
+									// onClick={() => addDataInBasket({
+									// 	id: item.id, count: 1, name: item.name, slug: item.slug,
+									// 	price: item.price, description: item.description, images: item.images[0].path,
+									// 	amount: item.amount
+									// })}
+									className={styles.recycle_button}
+								>
+									В корзину
+								</Button>
 
-									</>
-								)
-							)
+							</>
+
 
 						)}
 					</div>

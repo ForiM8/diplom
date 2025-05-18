@@ -102,3 +102,62 @@ export type OrderResponse = {
     isArray: boolean
     result: OrderItemType[]
 }
+
+export type User = {
+    name: string;
+    email: string;
+    _id: string;
+    rating: number;
+    reviews: string | number;
+    phone: string;
+    city: string;
+    password: string;
+    accessToken: string;
+    accessTokenExpires: number;
+    refreshToken: string;
+    status: number;
+    iat: number;
+    exp: number;
+    jti: string;
+    error: string;
+}
+
+export type Image = {
+    image: string;
+}
+
+export type Item = {
+    _id: string;
+    title: string;
+    description: string;
+    price: string;
+    images: Image[];
+    categorySlug: string;
+    user: User;
+}
+
+export type Customer = {
+    name: string;
+    email: string;
+    _id: string;
+    rating: number;
+    reviews: number;
+    phone: string;
+    city: string;
+    password: string;
+    accessToken: string;
+    accessTokenExpires: number;
+    refreshToken: string;
+    status: number;
+    iat: number;
+    exp: number;
+    jti: string;
+    error: string;
+}
+
+export type Orders = {
+    _id: string;
+    item: Item;
+    customer: Customer;
+    data: string
+}

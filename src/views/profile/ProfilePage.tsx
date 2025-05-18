@@ -23,18 +23,11 @@ export const ProfilePage = ({ user }: { user: User }) => {
 	const profileSections = useMemo(() => {
 		return [
 			{ name: 'order-list', value: 0, title: 'Список заказов' },
-			// { name: 'bonuses', value: 1, title: 'Бонусы' },
 			{ name: 'favorites', value: 1, title: 'Избранное' },
 			{ name: 'messenger-list', value: 2, title: 'Сообщения' },
-			// {
-			// 	name: 'my-address',
-			// 	value: 4,
-			// 	title: 'Мои адреса доставки',
-			// },
-			// { name: 'notification', value: 5, title: 'Список уведомлений' },
 			{ name: 'settings', value: 3, title: 'Настройки аккаунта' },
 			{ name: 'advertisements', value: 4, title: 'Мои объявления' },
-			{ name: 'messenger', value: 5, title: 'Сообщения' },
+			// { name: 'messenger', value: 5, title: 'Сообщения' },
 		]
 	}, [])
 
@@ -68,15 +61,13 @@ export const ProfilePage = ({ user }: { user: User }) => {
 				<FavoritesItemsSection />
 			</div>,
 			<AccountMessengerListSection key={2} setActivePanel={setActivePanelSettingNumber} />,
-
 			// <div key={5}>section 5</div>,
 			// <div key={6}>section 6</div>,
 			<AccountSettingsSection key={3} userData={user} />,
 			<MyAdsSection key={4} />,
-			<AccountMessengerSection key={5} />,
+			// <AccountMessengerSection key={5} />,
 		]
 	}, [])
-
 
 	// useEffect(() => {
 	// 	if (session.status !== 'authenticated' && session.status !== 'loading') {

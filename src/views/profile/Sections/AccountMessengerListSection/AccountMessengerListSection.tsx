@@ -8,8 +8,12 @@ import { User } from '@/types/User.types'
 import styles from './AccountMessengerListSection.module.scss'
 import Ava from '@/assets/images/standart_ava.png'
 import { useRouter } from 'next/router'
+import { MessageDocument } from '@/types/messenger.types'
+import userStore from '@/stores/user/UserStores'
+import { messengerGetByUser } from '@/actions/messenger/messenger.action'
+import { observer } from 'mobx-react-lite'
 
-export const AccountMessengerListSection = ({ setActivePanel }: { setActivePanel: Dispatch<SetStateAction<number>> }) => {
+export const AccountMessengerListSection = observer(({ setActivePanel }: { setActivePanel: Dispatch<SetStateAction<number>> }) => {
     const [user, setUser] = useState<User>()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [username, setUsername] = useState('')
@@ -17,15 +21,35 @@ export const AccountMessengerListSection = ({ setActivePanel }: { setActivePanel
     const [nickname, setNickname] = useState('')
     // const router = useRouter()
 
-    const redirect = useCallback(() => {
+    const redirect = useCallback((elem: MessageDocument) => {
         // if (router.isReady) {
-        const newUrl = `${window.location.origin}/profile/messenger`;
+        const newUrl = `${window.location.origin}/messenger/${elem._id}`;
         window.location.replace(newUrl)
         setActivePanel(5)
         // console.log('успех', window.location)
         // }
     }, [])
 
+    const [messengerData, setMessengerData] = useState<MessageDocument[]>()
+    const getMessenger = () => {
+        console.log('начало работы')
+        if (userStore?.user?.email) {
+            console.log('userStore?.user?.email - ', userStore?.user?.email);
+            messengerGetByUser(userStore?.user?.email)
+                .then(res => {
+                    console.log('res - ', res);
+                    setMessengerData(res?.result);
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении данных:', error);
+                });
+        }
+    };
+    useEffect(() => {
+        getMessenger()
+    }, [userStore?.user?.email])
+
+    console.log('messengerData - ', messengerData)
     return (
         <>
             <Input
@@ -35,18 +59,26 @@ export const AccountMessengerListSection = ({ setActivePanel }: { setActivePanel
                 className={styles.search_input}
             />
             <div className={styles.block_container}>
-                <div className={styles.block}>
-                    <ImageCustom
-                        onClick={redirect}
-                        classNameImg={styles.img}
-                        src={Ava}
-                    />
-                    <div className={styles.text_container}>
-                        <h3 onClick={redirect}>Захар Витальевич123</h3>
-                        <p>Хороший спец</p>
-                    </div>
-                </div>
+                {messengerData?.map((elem, i) => {
+                    if (elem?.customer._id === userStore?.user?._id) {
+                        return (
+                            <div className={styles.block} key={i}>
+                                <img
+                                    onClick={() => redirect(elem)}
+                                    className={styles.img}
+                                    src={elem?.item.images[0].image}
+                                />
+                                <div className={styles.text_container}>
+                                    <h3 onClick={() => redirect(elem)}>{elem.item.user.name}</h3>
+                                    <p>Хороший спец</p>
+                                </div>
+                            </div>
+                        )
+                    }
+
+                })}
+
             </div>
         </>
     )
-};
+});

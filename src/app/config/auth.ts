@@ -63,8 +63,10 @@ export const authOptions: AuthOptions = {
 
                     const user = {
                         email: credentials.email,
-                        id: userTokens.user.id,
+                        _id: userTokens.user._id,
+                        rating: userTokens.user.rating,
                         name: userTokens.user.name,
+                        reviews: userTokens.user.reviews,
                         phone: userTokens.user.phone,
                         city: userTokens.user.city,
                         password: userTokens.user.password,

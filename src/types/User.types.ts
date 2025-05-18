@@ -6,6 +6,7 @@ export type CreateUser = {
 }
 
 export type User = {
+    _id: string
     city_id: number
     city: string
     createdAt: string

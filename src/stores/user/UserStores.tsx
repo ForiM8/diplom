@@ -7,6 +7,17 @@ interface User {
     city?: string | null;
     phone?: string | null;
     password?: string | null
+    _id?: string
+    rating?: number
+    reviews?: number
+    accessToken?: string
+    accessTokenExpires?: number
+    refreshToken?: number
+    status?: number
+    iat?: number
+    exp?: number
+    jti?: string
+    error?: string
 }
 
 class UserStore {
@@ -26,7 +37,10 @@ class UserStore {
     }
 
     clearUser() {
-        this.user = null;
+        if (this?.user) {
+            this.user = null;
+        }
+
     }
 }
 

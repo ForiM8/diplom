@@ -5,6 +5,7 @@ import Icn4 from '@/assets/images/icn4.png'
 import Icn5 from '@/assets/images/icn5.png'
 import Icn6 from '@/assets/images/icn6.png'
 import People from '@/assets/images//people.png'
+import Aboutco from '@/assets/images/aboutco.jpg'
 import { title } from 'process'
 
 export const ABOUT = [
@@ -467,8 +468,8 @@ export const ITEMS = [
     {
         id: 6858,
         slug: "avtopodbor_tolahinimer_chestniy_podbor",
-        name: "Автоподбор. Толщиномер.Честный подбор",
-        price: 1200,
+        name: "Автоподбор,разовый осмотр",
+        price: 1000,
         amount: 2,
         settings: {
             show_if_no_count: false
@@ -487,7 +488,7 @@ export const ITEMS = [
             {
                 id: 28490,
                 name: null,
-                path: People,
+                path: Aboutco,
                 ItemImagesEntity: {
                     ordinal_number: 1
                 }

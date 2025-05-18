@@ -10,6 +10,7 @@ export default async function Profile() {
 			email: userStore.user?.email
 		})
 	)
+
 	console.log('user - ', user)
 	return (
 		<ProfilePage user={user?.result} />

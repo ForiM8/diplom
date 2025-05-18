@@ -5,13 +5,40 @@ import styles from './ProductsList.module.scss';
 import { usePathname } from 'next/navigation';
 import { ITEMS } from '@/components/dataTime/dataTime';
 
-export const ProductsList = ({ MyAdsSection }: { MyAdsSection?: boolean }) => {
+interface User {
+	name: string;
+	email: string;
+	phone: string;
+	city: string;
+	password: string;
+	accessToken: string;
+	accessTokenExpires: number;
+	refreshToken: string;
+	status: number;
+	iat: number;
+	exp: number;
+	jti: string;
+	error: string;
+}
+
+interface Product {
+	_id: string;
+	title: string;
+	description: string;
+	price: string;
+	image: string;
+	categorySlug: string;
+	user: User;
+}
+
+export const ProductsList = ({ MyAdsSection, productData }: { MyAdsSection?: boolean, productData?: Product[] }) => {
 	const pathname = usePathname();
 	const itemsList = useMemo(() => {
-		return ITEMS.map((item: any) => {
+		console.log('productData хуй - ', productData)
+		return productData?.map((item: Product) => {
 			return (
 				<ProductCard
-					key={item.id}
+					key={item._id}
 					item={item}
 					MyAdsSection={MyAdsSection}
 				/>
