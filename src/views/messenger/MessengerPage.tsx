@@ -44,29 +44,9 @@ export const MessengerPage = ({ messageData }: { messageData: MessageDocument })
     // finally 
 
     // function to add a new message
+
     const addMessage = async () => {
         if (input && userStore?.user) {
-            //  const newMessage = {
-            //     text: input,
-            //     dateText: new Date(),
-            //     _id: userStore?.user._id,
-            //     email: userStore?.user.email,
-            //     city: userStore?.user.city,
-            //     name: userStore?.user.name,
-            //     password: userStore?.user.password,
-            //     phone: userStore?.user.phone,
-            //     rating: userStore?.user.rating,
-            //     reviews: userStore?.user.reviews,
-            //     accessToken: userStore?.user.accessToken,
-            //     accessTokenExpires: userStore?.user.accessTokenExpires,
-            //     refreshToken: userStore?.user.refreshToken,
-            //     status: userStore?.user.status,
-            //     iat: userStore?.user.iat,
-            //     exp: userStore?.user.exp,
-            //     jti: userStore?.user.jti,
-            //     error: userStore?.user.error,
-
-            // };
             const newMessage = {
                 text: input,
                 dateText: new Date(),
@@ -77,22 +57,25 @@ export const MessengerPage = ({ messageData }: { messageData: MessageDocument })
                 message: [...prev.message, newMessage]
             }));
             setInput('');
-
             setMessageTrue(false);
         }
     };
 
     useEffect(() => {
         const messengerUpdateTry = async () => {
-            await messengerUpdate(message);
+            try {
+                await messengerUpdate(message);
+            } catch (error) {
+                console.error('Failed to update messenger:', error);
+            }
         };
 
         messengerUpdateTry();
-    }, [message]); // Зависимость от message
+    }, [message]);
 
     console.log('message - ', message)
 
-    const formatDate = (timestamp: any) => {
+    const formatDate = useMemo(() => (timestamp: any) => {
         const dateInDATA = new Date(timestamp);
         const now = new Date();
         const formattedTime = dateInDATA.toLocaleTimeString('ru-RU', { hour: 'numeric', minute: 'numeric', hour12: false });
@@ -110,7 +93,7 @@ export const MessengerPage = ({ messageData }: { messageData: MessageDocument })
             formattedDate = dateInDATA.toLocaleDateString('ru-RU');
         }
         return formattedDate + ', ' + formattedTime;
-    };
+    }, []);
     const onEmojiClick = (emojiObject: any) => {
         setInput(prev => prev + emojiObject.emoji)
         setOpenEmoji(prev => !prev)
@@ -155,7 +138,7 @@ export const MessengerPage = ({ messageData }: { messageData: MessageDocument })
                                 />
                             </div>
                             <div className={styles.mainMessenger}>
-                                {messageData.message.map((message) => {
+                                {messageData?.message?.map((message) => {
                                     if (message.name !== userName) {
                                         return (
                                             <MessageСompanion
@@ -164,12 +147,6 @@ export const MessengerPage = ({ messageData }: { messageData: MessageDocument })
                                                 lastTimeMessages={formatDate(message.dateText)}
                                             />
                                         )
-                                        // } else if (message.status === 'delete') {
-                                        //     return (
-                                        //         <div className={styles.deleteContainer}>
-                                        //             <div className={styles.text}>user {message.text} deleted</div>
-                                        //         </div>
-                                        //     )
                                     } else {
                                         return (
                                             <MessageUser

@@ -94,12 +94,12 @@ export const Header = observer(() => {
                             <div className={styles.register}>
                                 <div className={styles.head}>Зарегестрируйтесь прямо сейчас быстро и легко</div>
                                 <div className={styles.input_container}>
-                                    <Input className={styles.input_size} placeholder={'Ваше имя *'} />
-                                    <Input className={styles.input_size} placeholder={'Ваш телефон *'} />
+                                    <Input className={styles.input_size} placeholder={'Ваша почта *'} />
+                                    <Input className={styles.input_size} placeholder={'Ваш пароль *'} />
                                     <Button
                                         className={styles.btn_size}
                                         variant="blue">
-                                        Регистрация
+                                        Авторизоваться
                                     </Button>
                                 </div>
                                 <div className={styles.text_container}>

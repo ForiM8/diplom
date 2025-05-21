@@ -7,7 +7,7 @@ export const MessageUser = ({ text, date }: { text: string; date: string }) => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        width: "100%",
+        width: "98%",
       }}
     >
       <div></div>

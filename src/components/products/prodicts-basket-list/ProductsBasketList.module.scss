@@ -1,0 +1,28 @@
+$pc: 1440px;
+$laptop: 1280px;
+$tablet: 1024px;
+$tablet-mini: 770px;
+$mobile: 640px;
+
+.list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+
+    @media (width <=$tablet-mini) {
+        justify-content: baseline;
+    }
+}
+
+.listFavorites {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    gap: 10px;
+
+    @media (width <=$tablet-mini) {
+        justify-content: space-around;
+    }
+}

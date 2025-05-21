@@ -11,6 +11,7 @@ import { MdOutlineMessage } from 'react-icons/md'
 import { VscSettingsGear } from 'react-icons/vsc'
 import { MdDesignServices } from "react-icons/md";
 import styles from './AccountManagePanel.module.scss'
+import { PiBasket } from 'react-icons/pi'
 
 interface AccountManagePanelProps {
 	setActivePanel: Dispatch<SetStateAction<number>>
@@ -61,5 +62,6 @@ const panelSettingVariables = [
 	// },
 	{ title: 'Настройка аккаунта', image: CgProfile, url: 'settings' },
 	{ title: 'Мои объявления', image: MdDesignServices, url: 'advertisements' },
-	{ title: '', image: '', url: 'messenger' },
+	{ title: 'Корзина', image: PiBasket, url: 'basket' },
+	// { title: '', image: '', url: 'messenger' },
 ]

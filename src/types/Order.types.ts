@@ -47,7 +47,7 @@ export interface OrderUpdateType {
 }
 
 export interface OrderCreateType {
-    city_id: number;
+    city_id: string;
     street: string;
     delivery_method: DeliveryMethodEnumEn;
     payment_method: OrderPaymentMethodEnumEn;

@@ -17,6 +17,7 @@ import { OrderListSection } from './Sections/OrderList/OrderListSection'
 import { AccountMessengerListSection } from './Sections/AccountMessengerListSection/AccountMessengerListSection'
 import { AccountMessengerSection } from './Sections/AccountMessengerSection/AccountMessengerSection'
 import { MyAdsSection } from './Sections/MyAdsSection/MyAdsSection'
+import { BasketsItemsSection } from './Sections/BasketsItemsSection/BasketsItemsSection'
 
 export const ProfilePage = ({ user }: { user: User }) => {
 	const router = useRouter()
@@ -27,6 +28,7 @@ export const ProfilePage = ({ user }: { user: User }) => {
 			{ name: 'messenger-list', value: 2, title: 'Сообщения' },
 			{ name: 'settings', value: 3, title: 'Настройки аккаунта' },
 			{ name: 'advertisements', value: 4, title: 'Мои объявления' },
+			{ name: 'basket', value: 5, title: 'Корзина' },
 			// { name: 'messenger', value: 5, title: 'Сообщения' },
 		]
 	}, [])
@@ -65,6 +67,8 @@ export const ProfilePage = ({ user }: { user: User }) => {
 			// <div key={6}>section 6</div>,
 			<AccountSettingsSection key={3} userData={user} />,
 			<MyAdsSection key={4} />,
+			// <BasketsItemsSection key={5} favoriteItem={favoriteItem} basketData={basketData} />,
+			<BasketsItemsSection key={5} />,
 			// <AccountMessengerSection key={5} />,
 		]
 	}, [])

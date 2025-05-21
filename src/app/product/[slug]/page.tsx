@@ -1,4 +1,5 @@
 
+import { basketGetAll } from '@/actions/basket/basket.action'
 import { orderGetAll } from '@/actions/order/order.actions'
 import { itemGetByCategory, itemGetById } from '@/actions/products/products.action'
 import { withErrorHandler } from '@/utils/withErrorHandler'
@@ -10,7 +11,7 @@ export default async function DetailProduct({ params }: { params: { slug: string
 		itemGetById(params?.slug)
 	)
 	const { data: orderData, error: orderError } = await withErrorHandler(() =>
-		orderGetAll()
+		basketGetAll()
 	)
 	console.log('orderData - ', orderData)
 	return (

@@ -34,7 +34,6 @@ interface Product {
 export const ProductsList = ({ MyAdsSection, productData }: { MyAdsSection?: boolean, productData?: Product[] }) => {
 	const pathname = usePathname();
 	const itemsList = useMemo(() => {
-		console.log('productData хуй - ', productData)
 		return productData?.map((item: Product) => {
 			return (
 				<ProductCard
