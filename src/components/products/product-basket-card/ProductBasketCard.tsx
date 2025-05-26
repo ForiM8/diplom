@@ -22,12 +22,12 @@ import HeartRed from '@/assets/images/heartRed3.png'
 // import { cityDataStore } from '@/stores/city/CityStores'
 // import { useCalculateDateToDelivery } from '@/components/hooks/calculate-date-to-delivery/use-calculate-date-to-delivery'
 import { toast } from 'react-toastify'
-import userStore from '@/stores/user/UserStores'
-import { Orders } from '@/types/Order.types'
+import { Order } from '@/types/Order.types'
+import { basketClearByID } from '@/actions/basket/basket.action'
 // 
 type Props = {
-    items: Orders
-    itemsInBasked?: Orders[]
+    items: Order
+    itemsInBasked?: Order[]
     // itemsInFavorite?: ProductInFavorite[]
 }
 
@@ -43,8 +43,8 @@ export const ProductBasketCard: FC<Props> = observer(({ items, itemsInBasked }) 
     // )
     // const { dataCity } = cityDataStore
     const [location, setLocation] = useState<any>(null)
-    const [basket, setBasket] = useState<Orders[]>([])
-    const [favorite, setFavorite] = useState<Orders[]>([])
+    const [basket, setBasket] = useState<Order[]>([])
+    const [favorite, setFavorite] = useState<Order[]>([])
     const [count, setCount] = useState(false)
     const [countFavorite, setCountFavorite] = useState(false)
     // const { data, setBasketData } = basketDataStore
@@ -71,6 +71,10 @@ export const ProductBasketCard: FC<Props> = observer(({ items, itemsInBasked }) 
     // useEffect(() => {
     // 	syncLocalBasketWithServer();
     // }, [dataLogin.email]);
+    const deleteBasketItem = async (id: string) => {
+        const result = await basketClearByID(id)
+    }
+
     const getBarnaulTime = () => {
         return new Intl.DateTimeFormat('ru-RU', {
             timeZone: 'Asia/Barnaul',
@@ -241,6 +245,15 @@ export const ProductBasketCard: FC<Props> = observer(({ items, itemsInBasked }) 
                 <div>
 
                 </div>
+            </div>
+            <div className={styles.button_container}>
+                <Button
+                    onClick={() => deleteBasketItem(items._id)}
+                    className={styles.recycle_button}
+                    variant="muted"
+                >
+                    Удалить
+                </Button>
             </div>
             <div
                 className={clsx([

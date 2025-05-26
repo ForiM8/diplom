@@ -11,23 +11,33 @@ import { Input } from "@/components/ui/input/Input"
 import { ImageCustom } from "@/components/ui/ImageCustom"
 import { useEffect } from "react"
 import { useSession } from "next-auth/react"
-import userStore from "@/stores/user/UserStores"
 import { observer } from "mobx-react-lite"
+import { User } from "@/types/Order.types"
 
-export const Header = observer(() => {
+export const Header = observer((
+    {
+        user
+    }: {
+        user: User,
+    }
+) => {
     const pathname = usePathname();
-    const { data: session, status } = useSession();
-    useEffect(() => {
-        if (status === 'loading') {
-            userStore.setSessionStatus('loading');
-        } else if (session?.user) {
-            userStore.setUser(session.user);
-            userStore.setSessionStatus('authenticated');
-        } else {
-            userStore.clearUser();
-            userStore.setSessionStatus('unauthenticated');
-        }
-    }, [session, status]);
+    // const { data: session, status } = useSession();
+    // let accessToken: any;
+
+    // if (typeof window !== 'undefined') {
+    //     accessToken = localStorage.getItem('token') || undefined;
+    // }
+
+    // console.log('accessToken - ', accessToken)
+    // useEffect(() => {
+    //     if (session?.user) {
+    //         localStorage.setItem('token', session?.user?.accessToken)
+    //         localStorage.setItem('email', session?.user?.email || '')
+    //         userStore.setUser(session.user);
+    //         userStore.setSessionStatus('authenticated');
+    //     }
+    // }, [session?.user]);
 
     const handleChangeFilter = (selectedFilter: {
         value: string
@@ -35,6 +45,8 @@ export const Header = observer(() => {
     }) => {
         redirect(`/service/${selectedFilter.value}`)
     }
+    // console.log('session?.user - ', session?.user)
+    console.log('user - ', user)
     return (
         <>
             {pathname === '/' ? (
@@ -52,7 +64,7 @@ export const Header = observer(() => {
                                 <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
-                            {!userStore.user?.email ? (
+                            {!user ? (
                                 <div className={styles.button_container}>
                                     <Button
                                         onClick={() => redirect(`/auth`)}
@@ -86,7 +98,7 @@ export const Header = observer(() => {
                                 <div className={styles.head}>Автоподбор и выездная
                                     диагностика автомобилей
                                     в Барнауле и не только</div>
-                                <div className={styles.text}>Наш сайт поможет поможет подобрать для вас лучший автомобиль
+                                <div className={styles.text}>Наш сайт поможет подобрать для вас лучший автомобиль
                                     и убережем от покупки хлама.</div>
                             </div>
                         </div>
@@ -130,7 +142,7 @@ export const Header = observer(() => {
                                 <a href="/reviews">Отзывы</a>
                                 <a href="/blog">Блог</a>
                             </div>
-                            {!userStore.user?.email ? (
+                            {!user ? (
                                 <div className={styles.button_container}>
                                     <>
                                         <Button

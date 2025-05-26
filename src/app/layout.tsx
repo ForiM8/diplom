@@ -7,6 +7,10 @@ import styles from './layout.module.scss';
 import { MainProvider } from '@/providers/MainProvider';
 import Head from 'next/head';
 import 'react-toastify/dist/ReactToastify.css'
+import { getServerSession } from 'next-auth';
+import { authOptions } from './config/auth';
+import { userGet } from '@/actions/user/user.actions';
+import { withErrorHandler } from '@/utils/withErrorHandler';
 
 const ubuntu = Roboto({
   subsets: ['cyrillic', 'latin'],
@@ -18,7 +22,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
+  const session = await getServerSession(authOptions);
+  const { data: user, error: errorUser } = await withErrorHandler(() =>
+    userGet({
+      email: session?.user?.email
+    })
+  );
   return (
     <html lang='en'>
       <Head>
@@ -27,7 +36,7 @@ export default async function RootLayout({
       <body className={clsx(ubuntu.className, styles.layout)}>
         <MainProvider>
           <div className='layout'>
-            <Header />
+            <Header user={user?.result} />
             <main>{children}</main>
             <Footer />
           </div>

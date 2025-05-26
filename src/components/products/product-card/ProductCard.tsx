@@ -10,6 +10,7 @@ import { Minus, Plus } from 'lucide-react'
 import { count } from 'console'
 import { Button } from '@/components/ui/button/Button'
 import { ImageCustom } from '@/components/ui/ImageCustom'
+import { productClearByID } from '@/actions/products/products.action'
 interface User {
 	name: string;
 	email: string;
@@ -36,7 +37,7 @@ interface Product {
 	user: User;
 }
 type Props = {
-	item?: Product
+	item: Product
 	// itemsInBasked?: ProductInResult[]
 	mutate?: () => void
 	MyAdsSection?: boolean
@@ -64,6 +65,11 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 		(itemsInFavorite) => itemsInFavorite.id === Number(item?._id)
 	)
 	console.log('item [eq - ', item)
+
+	const deleteAdsItem = async (id: string) => {
+		await productClearByID(id)
+	}
+
 	return (
 		<div className={styles.product_card}>
 			{isInFavorite ? (
@@ -100,7 +106,7 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 						<img
 							onClick={() => setIsAction(true)}
 							className={styles.image}
-							src={item.image}
+							src={item.images[0].image}
 							alt='product-image'
 						/>
 					) : (
@@ -117,9 +123,7 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 					</div>
 					<a href={`/product/${item?._id}`}>
 
-						<p title={item?.title} className={styles.title}>{`${item?.title.slice(
-							0, 43
-						)}...`}</p>
+						<p title={item?.title} className={styles.title}>{`${item?.title}`}</p>
 					</a>
 
 				</div>
@@ -168,18 +172,13 @@ export const ProductCard: FC<Props> = ({ item, MyAdsSection }) => {
 
 							<>
 								<Button
-									// onClick={() => addDataInBasket({
-									// 	id: item.id, count: 1, name: item.name, slug: item.slug,
-									// 	price: item.price, description: item.description, images: item.images[0].path,
-									// 	amount: item.amount
-									// })}
+									onClick={() => deleteAdsItem(item?._id)}
 									className={styles.recycle_button}
 								>
-									В корзину
+									Удалить
 								</Button>
 
 							</>
-
 
 						)}
 					</div>

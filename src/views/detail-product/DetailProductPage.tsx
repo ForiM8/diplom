@@ -18,26 +18,28 @@ import { removeTags } from "@/utils/removeTags"
 import { ImageFullScreenInfoModal } from "@/components/modals/ImageFullScreenInfoModal/ImageFullScreenInfoModal"
 import Star from '@/assets/images/star.png'
 import AvatarInDetali from '@/assets/images/avatarInDetali.png'
-import userStore from "@/stores/user/UserStores"
+// import userStore from "@/stores/user/UserStores"
 import { orderCreate } from "@/actions/order/order.actions"
 import { Product } from "@/types/Product.types"
-import { Orders } from "@/types/Order.types"
+import { Order, OrderItem } from "@/types/Order.types"
 import { messengerCreate, messengerGetByUser } from "@/actions/messenger/messenger.action"
 import { MessageDocument } from "@/types/messenger.types"
 import { useRouter } from "next/navigation"
-import { basketCreate } from "@/actions/basket/basket.action"
+import { basketCreate, basketGetByUser, basketGetByUserAndItemId } from "@/actions/basket/basket.action"
+import { observer } from "mobx-react-lite"
+import { User } from "@/types/User.types"
 
-export const DetailProductPage = ({ item, orders }: { item: Product, orders: Orders[] }) => {
+export const DetailProductPage = observer(({ item, basketData, userData, favoritesData }: { item: Product, basketData: Order[], userData: User, favoritesData: Order[] }) => {
 	const [fullScreenImage, setFullScreenImage] = useState(false)
 	const [isUnauthorization, setIsUnauthorization] = useState(false)
 	const [selectImageIndex, setSelectImageIndex] = useState(0)
-	const [basket, setBasket] = useState([])
+	// const [basket, setBasket] = useState([])
 	const [countBoolen, setCountBoolen] = useState(false)
 	const [statSpec, setStatSpec] = useState<boolean>(false)
 	const [statDescription, setStatusDescription] = useState<boolean>(true)
 	const [favorite, setFavorite] = useState([])
 	const [dateTime, setDateTime] = useState<number>()
-	const [ordersFinish, setOrdersFinish] = useState<Orders[]>()
+	const [ordersFinish, setOrdersFinish] = useState<Order[]>()
 	const [thisOrderCreate, setThisOrderCreate] = useState<boolean>(false)
 	const [messengerData, setMessengerData] = useState<MessageDocument[]>()
 	const [group, setGroup] = useState<MessageDocument[]>()
@@ -45,16 +47,36 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 
 	const router = useRouter()
 
+	// const [basketData, setBasketData] = useState<Order[]>()
+	// const getProduct = () => {
+	// 	if (userData?.user?.email) {
+	// 		console.log('userStore?.user?.email - ', userData?.user?.email);
+	// 		basketGetByUserAndItemId(userData?.user?.email, item._id)
+	// 			.then(res => {
+	// 				console.log('res - ', res);
+	// 				setBasketData(res?.result);
+	// 			})
+	// 			.catch(error => {
+	// 				console.error('Ошибка при получении данных:', error);
+	// 			});
+	// 	}
+	// };
+	// useEffect(() => {
+
+	// 	getProduct()
+
+	// }, [userData?.user?.email])
+
 	const [userName, setUserName] = useState<string | null | undefined>('')
 	useEffect(() => {
-		setUserName(userStore?.user?.email);
-	}, [userStore?.user?.name]);
+		setUserName(userData?.user?.email);
+	}, [userData?.user?.name]);
 
 	const getMessenger = () => {
 		console.log('начало работы')
-		if (userStore?.user?.email) {
-			console.log('userStore?.user?.email - ', userStore?.user?.email);
-			messengerGetByUser(userStore?.user?.email)
+		if (userData?.user?.email) {
+			console.log('userStore?.user?.email - ', userData?.user?.email);
+			messengerGetByUser(userData?.user?._id)
 				.then(res => {
 					console.log('res - ', res);
 					setMessengerData(res?.result);
@@ -72,9 +94,9 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 		setGroup(messengerData?.filter((elem) => elem.item._id === item._id))
 	}, [messengerData])
 
-	useEffect(() => {
-		setHandleFilterOrderUse(handleFilterOrder)
-	}, [messengerData])
+	// useEffect(() => {
+	// 	setHandleFilterOrderUse(handleFilterOrder)
+	// }, [messengerData])
 
 	const messageTry = () => {
 		const result = messengerData?.some((elem: MessageDocument) => elem.item._id === item._id)
@@ -105,20 +127,21 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 	// 		keepPreviousData: true,
 	// 	}
 	// )
-	console.log('item - ', item)
+	console.log('basketData - ', basketData)
 
 	// const checkProductIsOrder = () => {
 	// 	orders.
 	// } 
-	const handleFilterOrder = useMemo(() => {
-		const oredrsFilter = orders.filter((elem: Orders) => elem.item._id === item._id);
-		if (oredrsFilter.some((elem: Orders) => elem.customer._id === userStore?.user?._id)) {
-			return true
-		} else {
-			return false
-		}
+	// const handleFilterOrder = () => {
+	// 	const oredrsFilter = basketData?.filter((elem: any) => elem.item._id === item._id);
+	// 	console.log('oredrsFilter - ', oredrsFilter)
+	// 	if (oredrsFilter ? oredrsFilter[0]?.item._id === item._id : false) {
+	// 		return true
+	// 	} else {
+	// 		return false
+	// 	}
 
-	}, [userStore?.user])
+	// }
 
 	// useEffect(() => {
 	// 	handleFilterOrder()
@@ -141,23 +164,35 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 	const HandleBasketAdd = (item: Product) => {
 		const dataOrder = {
 			item: item,
-			customer: userStore?.user,
+			customer: userData?.user,
 			data: getBarnaulTime()
 		}
 		const result = basketCreate(dataOrder)
 		console.log('result - ', result)
 	}
 
-	const HandleMessengerCreate = (item: Product) => {
+	const HandleMessengerCreate = async (item: Product) => {
+
 		const dataOrder = {
 			item: item,
-			customer: userStore?.user,
+			customer: userData?.user,
 			message: [],
 			data: getBarnaulTime()
+		};
+
+		try {
+			const result = await messengerCreate(dataOrder);
+			console.log('result - s -', result);
+
+			if (result?.response === "true") {
+				router.replace(`/messenger/${result?.body?.insertedId}`);
+			} else {
+				console.error('Ошибка: неожиданный статус ответа', result?.status);
+			}
+		} catch (error) {
+			console.error('Ошибка при создании мессенджера:', error);
 		}
-		const result = messengerCreate(dataOrder)
-		console.log('messengerResult - ', result)
-	}
+	};
 
 	const calculateDate = (
 		amount: number,
@@ -187,7 +222,7 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 		}
 
 		const [day, month, year] = datePart.split('.').reverse()
-		const currentDate = new Date(`${day}-${month}-${year}`)
+		const currentDate = new Date(`${day} -${month} -${year} `)
 
 		currentDate.setDate(currentDate.getDate() + dateToDelevery)
 		const options: Intl.DateTimeFormatOptions = {
@@ -331,9 +366,9 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 											<ImageCustom key={index} src={Star} classNameImg={styles.img} />
 										))}
 									</div>
-									Купили более
+									Обратились более
 									<span className='mx-[5px] font-semibold'>
-										<b>{Math.round((item.user.rating) / 2.4)}</b>
+										{' '}<b>{Math.round((item.user.rating) / 2.4)}</b>{' '}
 									</span>
 									раз
 								</div>
@@ -365,8 +400,14 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 							</div> */}
 							<div className={styles.options}>
 								<div className={styles.button_container}>
-									{handleFilterOrderUse ? (
-										<div>добавлено в корзину</div>
+									{basketData?.some((basket) => basket.item._id === item._id) ? (
+										<Button
+											onClick={() => router.push('/profile/basket')}
+											className={styles.recycle_button}
+											variant="muted"
+										>
+											Перейти в корзину
+										</Button>
 									) : (
 										<Button
 											onClick={() => HandleBasketAdd(item)}
@@ -377,8 +418,9 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 									)}
 									{messengerData?.some((elem: MessageDocument) => elem.item._id === item._id) ? (
 										<Button
-											onClick={() => router.replace(`/messenger/${group ? group[0]._id : ''}`)}
+											onClick={() => router.replace(`/ messenger / ${group ? group[0]._id : ''} `)}
 											className={styles.recycle_button}
+											variant="muted"
 										>
 											Перейти к диалогу
 										</Button>
@@ -390,7 +432,7 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 											Написать
 										</Button>
 									)}
-									{true ? (
+									{favoritesData ? (
 										<Button
 											// onClick={() =>
 											// 	// deleteDataInFavorite({
@@ -466,12 +508,19 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 							<div className={styles.contacts}>
 								<div className={styles.text_container}>
 									<p className={styles.name}>{item?.user?.name}</p>
-									<div className={styles.rating}>{item?.user?.rating}
-										{[...Array(item?.user?.rating)].map((_, index) => (
-											<ImageCustom key={index} src={Star} classNameImg={styles.img} />
-										))}<span> {item?.user?.reviews} отзывов</span>
+									<div className={styles.rating}>
+										<p>{item?.user?.rating}.0</p>
+										<div className={styles.stars_container}>
+											{[...Array(item?.user?.rating)].map((_, index) => (
+												<ImageCustom key={index} src={Star} classNameImg={styles.img} />
+											))}
+										</div>
+										<span> {item?.user?.reviews} отзывов</span>
 									</div>
-									<p>{item?.user?.data}</p>
+									<p className={styles.data_create}>На площадке c мая 2025</p>
+									<div className={styles.count_products_container}>
+										1 объявление пользователя
+									</div>
 								</div>
 								<ImageCustom src={AvatarInDetali} classNameImg={styles.img} />
 							</div>
@@ -518,4 +567,4 @@ export const DetailProductPage = ({ item, orders }: { item: Product, orders: Ord
 			</div>
 		</Section >
 	)
-}
+})

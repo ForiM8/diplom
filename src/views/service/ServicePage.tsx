@@ -10,12 +10,14 @@ import People from '@/assets/images//heart_border_black.png'
 import Star from '@/assets/images/star.png'
 import { useRouter } from 'next/navigation'
 import { removeTags } from '@/utils/removeTags'
-import userStore from '@/stores/user/UserStores'
 import { basketCreate } from '@/actions/basket/basket.action'
 import { Product } from '@/types/Product.types'
 import { favoriteCreate } from '@/actions/favorite/favorite.action'
-import { Orders } from '@/types/Order.types'
+import { Order } from '@/types/Order.types'
 import { useEffect, useState } from 'react'
+import { User } from '@/types/User.types'
+import HeartRed from '@/assets/images/heartRed3.png'
+import { formatCurrencyRub } from '@/utils/formatCurrencyRub'
 
 interface Category {
     _id: string;
@@ -26,16 +28,16 @@ interface Category {
     slug: string;
 }
 
-export const ServicePage = ({ productData, categoryData, favoriteData, basketData }: { productData: any[], categoryData: Category, favoriteData: Orders[], basketData: Orders[] }) => {
-    console.log('categoryData - ', categoryData)
+export const ServicePage = ({ userData, productData, categoryData, favoriteData, basketData }: { productData: any[], categoryData: Category, favoriteData: Order[], basketData: Order[], userData: User }) => {
+    console.log('basketData - ', basketData)
     const router = useRouter()
-    const [favoriteDataByUser, setFavoriteDataByUser] = useState<Orders[]>()
-    const [basketDataByUser, setBasketDataByUser] = useState<Orders[]>()
+    const [favoriteDataByUser, setFavoriteDataByUser] = useState<Order[]>()
+    const [basketDataByUser, setBasketDataByUser] = useState<Order[]>()
     useEffect(() => {
-        setFavoriteDataByUser(favoriteData.filter((elem) => elem.customer._id !== userStore?.user?._id))
+        setFavoriteDataByUser(favoriteData?.filter((elem) => elem.customer._id !== userData?.user?._id))
     }, [favoriteData])
     useEffect(() => {
-        setBasketDataByUser(basketData.filter((elem) => elem.customer._id !== userStore?.user?._id))
+        setBasketDataByUser(basketData?.filter((elem) => elem.customer._id !== userData?.user?._id))
     }, [basketData])
     const getBarnaulTime = () => {
         return new Intl.DateTimeFormat('ru-RU', {
@@ -48,10 +50,11 @@ export const ServicePage = ({ productData, categoryData, favoriteData, basketDat
             second: '2-digit',
         }).format(new Date())
     }
+    console.log()
     const HandleBasketAdd = (item: Product) => {
         const dataOrder = {
             item: item,
-            customer: userStore?.user,
+            customer: userData?.user,
             data: getBarnaulTime()
         }
         const result = basketCreate(dataOrder)
@@ -60,7 +63,7 @@ export const ServicePage = ({ productData, categoryData, favoriteData, basketDat
     const HandleFavoriteAdd = async (item: Product) => {
         const dataOrder = {
             item: item,
-            customer: userStore?.user,
+            customer: userData?.user,
             data: getBarnaulTime()
         }
         const result = await favoriteCreate(dataOrder)
@@ -76,7 +79,7 @@ export const ServicePage = ({ productData, categoryData, favoriteData, basketDat
                     <h1>{categoryData?.title}</h1>
 
                     <div className={styles.container}>
-                        <h2>Цены на автоподбор легковых автомобилей</h2>
+                        {/* <h2>Цены на автоподбор легковых автомобилей</h2> */}
                         <div className={styles.service_container}>
                             {productData?.map((elem, i) => {
                                 return (
@@ -94,8 +97,12 @@ export const ServicePage = ({ productData, categoryData, favoriteData, basketDat
                                                     {/* <Button
                                                         className={styles.btn_size}
                                                         variant="inFavorite"> */}
-                                                    {favoriteDataByUser && favoriteDataByUser?.some((favorite) => favorite.item._id === elem._id) ? (
-                                                        <div>уже в избранном</div>
+                                                    {favoriteData && favoriteData?.some((favorite) => favorite.item._id === elem._id) ? (
+                                                        <ImageCustom
+                                                            onClick={() => HandleFavoriteAdd(elem)}
+                                                            classNameImg={styles.img}
+                                                            src={HeartRed}
+                                                        />
                                                     ) : (<ImageCustom
                                                         onClick={() => HandleFavoriteAdd(elem)}
                                                         classNameImg={styles.img}
@@ -130,9 +137,14 @@ export const ServicePage = ({ productData, categoryData, favoriteData, basketDat
                                                 <p className={styles.document}>Документы проверены</p>
                                             </div>
                                             <div className={styles.price_container}>
-                                                <p><span>Цена: </span>{elem.price}</p>
-                                                {basketDataByUser && basketDataByUser?.some((basket) => basket.item._id === elem._id) ? (
-                                                    <div>уже в корзине</div>
+                                                <p><span>Цена: </span>{formatCurrencyRub(Number(elem.price))}</p>
+                                                {basketData && basketData?.some((basket) => basket.item._id === elem._id) ? (
+                                                    <Button
+                                                        onClick={() => router.push('/profile/basket')}
+                                                        className={styles.btn_size}
+                                                        variant='muted'>
+                                                        Перейти в корзину
+                                                    </Button>
                                                 ) : (
                                                     <Button
                                                         onClick={() => HandleBasketAdd(elem)}

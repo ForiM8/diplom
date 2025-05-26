@@ -7,9 +7,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { TbLogout } from 'react-icons/tb'
 import { AccountManagePanel } from './AccountManagePanel/AccountManagePanel'
 import styles from './Profile.module.scss'
-// import { AccountSettingsSection } from './Sections/AccountSettings/AccountSettingsSection'
 import { FavoritesItemsSection } from './Sections/FavoritesItems/FavoritesItemsSection'
-// import { OrderListSection } from './Sections/OrderList/OrderListSection'
 import { User } from '@/types/User.types'
 import { Button } from '@/components/ui/button/Button'
 import { AccountSettingsSection } from './Sections/AccountSettings/AccountSettingsSection'
@@ -18,8 +16,28 @@ import { AccountMessengerListSection } from './Sections/AccountMessengerListSect
 import { AccountMessengerSection } from './Sections/AccountMessengerSection/AccountMessengerSection'
 import { MyAdsSection } from './Sections/MyAdsSection/MyAdsSection'
 import { BasketsItemsSection } from './Sections/BasketsItemsSection/BasketsItemsSection'
+import { Order } from '@/types/Order.types'
+import { orderGetByUser } from '@/actions/order/order.actions'
+import { MessageDocument } from '@/types/messenger.types'
+import { Product } from '@/types/Product.types'
 
-export const ProfilePage = ({ user }: { user: User }) => {
+export const ProfilePage = (
+	{
+		user,
+		orderData,
+		favoriteData,
+		messengerData,
+		productData,
+		basketData
+	}: {
+		user: User,
+		orderData: Order[],
+		favoriteData: Order[],
+		messengerData: MessageDocument[],
+		productData: Product[],
+		basketData: Order[],
+	}
+) => {
 	const router = useRouter()
 	const profileSections = useMemo(() => {
 		return [
@@ -29,7 +47,6 @@ export const ProfilePage = ({ user }: { user: User }) => {
 			{ name: 'settings', value: 3, title: 'Настройки аккаунта' },
 			{ name: 'advertisements', value: 4, title: 'Мои объявления' },
 			{ name: 'basket', value: 5, title: 'Корзина' },
-			// { name: 'messenger', value: 5, title: 'Сообщения' },
 		]
 	}, [])
 
@@ -39,7 +56,9 @@ export const ProfilePage = ({ user }: { user: User }) => {
 		profileSections.find((section) => section.name === nowProfileSection)
 			?.value || 0
 	)
+
 	const handleLogout = async () => {
+		localStorage.removeItem('token')
 		await signOut({
 			callbackUrl: '/',
 		})
@@ -53,31 +72,19 @@ export const ProfilePage = ({ user }: { user: User }) => {
 		})
 	}, [nowProfileSection])
 
+
+	console.log('user in profile - ', user)
+
 	const sections = useMemo(() => {
 		return [
-			<div key={0}>
-				<OrderListSection />
-			</div>,
-			// <div key={2}>section 2</div>,
-			<div key={1}>
-				<FavoritesItemsSection />
-			</div>,
-			<AccountMessengerListSection key={2} setActivePanel={setActivePanelSettingNumber} />,
-			// <div key={5}>section 5</div>,
-			// <div key={6}>section 6</div>,
+			<OrderListSection key={0} orderData={orderData} />,
+			<FavoritesItemsSection key={1} favoriteData={favoriteData} />,
+			<AccountMessengerListSection key={2} userData={user} messengerData={messengerData} setActivePanel={setActivePanelSettingNumber} />,
 			<AccountSettingsSection key={3} userData={user} />,
-			<MyAdsSection key={4} />,
-			// <BasketsItemsSection key={5} favoriteItem={favoriteItem} basketData={basketData} />,
-			<BasketsItemsSection key={5} />,
-			// <AccountMessengerSection key={5} />,
+			<MyAdsSection key={4} productData={productData} />,
+			<BasketsItemsSection key={5} basketData={basketData} />,
 		]
-	}, [])
-
-	// useEffect(() => {
-	// 	if (session.status !== 'authenticated' && session.status !== 'loading') {
-	// 		router.push('/auth')
-	// 	}
-	// }, [session])
+	}, [orderData])
 
 	return (
 		<div className={styles.bg}>

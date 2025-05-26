@@ -7,8 +7,8 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button/Button'
 import { toast } from 'react-toastify'
 import { productCreate } from '@/actions/products/products.action'
-import userStore from '@/stores/user/UserStores'
 import { ErrorMessage } from '@hookform/error-message'
+import { User } from '@/types/User.types'
 
 
 type CreationAds = {
@@ -18,7 +18,7 @@ type CreationAds = {
     image: FileList // Добавьте поле для изображения
 }
 
-export const CreationAds = ({ categoryData }: { categoryData: any }) => {
+export const CreationAds = ({ categoryData, userData }: { categoryData: any, userData: User }) => {
     const [categoryId, serCategoryId] = useState<string>('')
     console.log('categoryId - ', categoryId)
 
@@ -46,7 +46,7 @@ export const CreationAds = ({ categoryData }: { categoryData: any }) => {
                 image: data.image
             }],
             categorySlug: categoryId,
-            user: userStore?.user
+            user: userData?.user
         }
         try {
             const result = await productCreate(dataCreate);

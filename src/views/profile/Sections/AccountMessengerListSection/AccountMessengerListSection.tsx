@@ -9,11 +9,10 @@ import styles from './AccountMessengerListSection.module.scss'
 import Ava from '@/assets/images/standart_ava.png'
 import { useRouter } from 'next/router'
 import { MessageDocument } from '@/types/messenger.types'
-import userStore from '@/stores/user/UserStores'
 import { messengerGetByUser } from '@/actions/messenger/messenger.action'
 import { observer } from 'mobx-react-lite'
 
-export const AccountMessengerListSection = observer(({ setActivePanel }: { setActivePanel: Dispatch<SetStateAction<number>> }) => {
+export const AccountMessengerListSection = observer(({ setActivePanel, messengerData, userData }: { setActivePanel: Dispatch<SetStateAction<number>>, messengerData: MessageDocument[], userData: User }) => {
     const [user, setUser] = useState<User>()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [username, setUsername] = useState('')
@@ -30,25 +29,6 @@ export const AccountMessengerListSection = observer(({ setActivePanel }: { setAc
         // }
     }, [])
 
-    const [messengerData, setMessengerData] = useState<MessageDocument[]>()
-    const getMessenger = () => {
-        console.log('начало работы')
-        if (userStore?.user?.email) {
-            console.log('userStore?.user?.email - ', userStore?.user?.email);
-            messengerGetByUser(userStore?.user?.email)
-                .then(res => {
-                    console.log('res - ', res);
-                    setMessengerData(res?.result);
-                })
-                .catch(error => {
-                    console.error('Ошибка при получении данных:', error);
-                });
-        }
-    };
-    useEffect(() => {
-        getMessenger()
-    }, [userStore?.user?.email])
-
     console.log('messengerData - ', messengerData)
     return (
         <>
@@ -60,7 +40,7 @@ export const AccountMessengerListSection = observer(({ setActivePanel }: { setAc
             />
             <div className={styles.block_container}>
                 {messengerData?.map((elem, i) => {
-                    if (elem?.customer._id === userStore?.user?._id) {
+                    if (elem?.customer._id === userData?.user?._id) {
                         return (
                             <div className={styles.block} key={i}>
                                 <img

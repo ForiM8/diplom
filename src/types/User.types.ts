@@ -6,24 +6,27 @@ export type CreateUser = {
 }
 
 export type User = {
-    _id: string
-    city_id: number
-    city: string
-    createdAt: string
-    email: string
-    id: number
-    name: string
-    password_hash: string
-    phone: number
-    role: number
-    status: number
-    telegram: string
-    updatedAt: string
-    address: string
-    street: string
-    house: string
-    flat: string
-    zip_code: string
+    user: {
+        _id: string
+        city_id: number
+        city: string
+        createdAt: string
+        email: string
+        id: number
+        name: string
+        password: string
+        phone: string
+        role: number
+        status: number
+        telegram: string
+        updatedAt: string
+        address: string
+        street: string
+        house: string
+        flat: string
+        zip_code: string
+    }
+
 }
 
 export type LoginUser = {

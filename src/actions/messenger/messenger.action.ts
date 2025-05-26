@@ -36,9 +36,9 @@ export async function orderGetAll() {
 }
 
 export const messengerGetByUser = async (
-    email?: string,
+    id?: string,
 ) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/get/group/userId/${email}`
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/get/group/userId/${id}`
 
     const res = await api(url, {
         method: 'GET',

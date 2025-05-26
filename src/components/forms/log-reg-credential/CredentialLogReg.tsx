@@ -77,6 +77,7 @@ export const CredentialLogReg = () => {
                 const dataUser = {
                     email: data.email,
                     name: data.name,
+                    password: data.password,
                     rating: 0,
                     avatar: '',
                     reviews: 0,

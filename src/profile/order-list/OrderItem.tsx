@@ -8,10 +8,11 @@ import styles from './OrderItem.module.scss'
 import Trash from '@/assets/images/trash.png'
 import { Button } from '@/components/ui/button/Button'
 import { toast } from 'react-toastify'
-import { DeliveryMethodEnumEn, OrderItemType, Orders, OrderStatusEnum } from '@/types/Order.types'
+import { DeliveryMethodEnumEn, Order, OrderStatusEnum } from '@/types/Order.types'
+import { orderDeleteById } from '@/actions/order/order.actions'
 
 interface OrdersItemType {
-	item: Orders
+	item: Order
 	mutate?: () => void
 }
 
@@ -80,7 +81,7 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 		},
 	]
 	const totalPrice = useMemo(() => {
-		let total = item.item.price
+		let total = item.item[0].item.price
 		return Number(total)
 	}, [item])
 
@@ -133,7 +134,7 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 				</div>
 
 				<Button
-
+					onClick={() => orderDeleteById(item._id)}
 					className={styles.trash}
 				>
 					{/* <ImageCustom
@@ -152,22 +153,21 @@ export const OrderItem = ({ item, mutate }: OrdersItemType) => {
 						items={[
 							...item?.item?.map((item, i) => (
 								<div className={styles.order_item} key={i}>
-									<a href={`/product/${item.item.slug}`}>
-										<ImageCustom
-											classNameImg={styles.item_image}
-											src={item?.item.images[0]?.path}
-											alt={item.item.name}
+									<a href={`/product/${item.item._id}`}>
+										<img
+											className={styles.item_image}
+											src={item?.item.images[0]?.image}
+											alt={item.item.title}
 										/>
 										<div className={styles.item_count_prices_info}>
-											<p>{formatCurrencyRub(item.item.price)}</p>
-											<p>{item.count}шт</p>
+											<p>{formatCurrencyRub(Number(item.item.price))}</p>
 										</div>
 									</a>
-									<a href={`/product/${item.item.slug}`}>
-										<p title={item.name} className={styles.item_name}>
-											{item.item.name.length > 20
-												? `${item.item.name.slice(0, 17)}...`
-												: item.item.name}
+									<a href={`/product/${item.item._id}`}>
+										<p title={item.item.title} className={styles.item_name}>
+											{item.item.title.length > 20
+												? `${item.item.title.slice(0, 17)}...`
+												: item.item.title}
 										</p>
 									</a>
 								</div>

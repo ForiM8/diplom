@@ -5,33 +5,21 @@ import { useEffect, useState } from 'react'
 import styles from './BasketsItemsSection.module.scss'
 import { Button } from '@/components/ui/button/Button'
 import { observer } from 'mobx-react-lite'
-import { Orders } from '@/types/Order.types'
+import { Order } from '@/types/Order.types'
 import { basketGetByUser } from '@/actions/basket/basket.action'
-import userStore from '@/stores/user/UserStores'
 import GlobalLoaderStore from '@/stores/global-loader/GlobalLoaderStore'
 import { ProductsBasketList } from '@/components/products/prodicts-basket-list/ProductsBasketList'
+import { useRouter } from 'next/navigation'
 // 
-export const BasketsItemsSection = observer(() => {
-    const { isLoading, toggleLoader } = GlobalLoaderStore
-    const [basketData, setBasketData] = useState<Orders[]>()
-    const getProduct = () => {
-        if (userStore?.user?.email) {
-            console.log('userStore?.user?.email - ', userStore?.user?.email);
-            basketGetByUser(userStore?.user?.email)
-                .then(res => {
-                    console.log('res - ', res);
-                    setBasketData(res?.result);
-                })
-                .catch(error => {
-                    console.error('Ошибка при получении данных:', error);
-                });
-        }
-    };
-    useEffect(() => {
+export const BasketsItemsSection = observer((
+    {
+        basketData
+    }: {
+        basketData: Order[]
+    }
+) => {
+    const router = useRouter()
 
-        getProduct()
-
-    }, [userStore?.user?.email])
     console.log('basketData - ', basketData)
 
     return (
@@ -43,7 +31,7 @@ export const BasketsItemsSection = observer(() => {
                 <h1>Корзина</h1>
                 {basketData && basketData?.length > 0 && (
                     <Button
-                        onClick={() => toggleLoader()}
+
                         variant='primary'
                         href='/make-order'
                         className={styles.btn_sizes}

@@ -6,7 +6,6 @@ import { useCallback, useEffect, useState } from 'react'
 import AvatarImage from '../../../../assets/standartAvatar/standartAvatar.png'
 import styles from './AccountSettingsSection.module.scss'
 import { User } from '@/types/User.types'
-import userStore from '@/stores/user/UserStores'
 import { observer } from 'mobx-react-lite'
 import { userGet, userUpdate } from '@/actions/user/user.actions'
 import { toast } from 'react-toastify'
@@ -20,34 +19,34 @@ export const AccountSettingsSection = observer(({ userData }: { userData: User }
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [city, setCity] = useState('')
-    const { setUser, clearUser } = userStore
+    // const { setUser, clearUser } = userStore
 
-    const userGetByData = async () => {
-        const result = await userGet({ email: userStore?.user?.email })
-        console.log('result - ', result)
-        clearUser()
-        setUser(result.result)
-    }
-    console.log('userStore - ', userStore)
+    // const userGetByData = async () => {
+    //     const result = await userGet({ email: userStore?.user?.email })
+    //     console.log('result - ', result)
+    //     clearUser()
+    //     setUser(result.result)
+    // }
+    console.log('userData - ', userData?.user)
     useEffect(() => {
-        if (userStore?.user?.email) {
-            userGetByData()
-        }
+        // if (userData?.user?.email) {
+        //     userGetByData()
+        // }
 
-        setPhoneNumber(userStore?.user?.phone || '');
-        setUsername(userStore?.user?.name || '');
-        setEmail(userStore?.user?.email || '');
-        setCity(userStore?.user?.city || '');
-    }, [userStore?.user?.email]);
+        setPhoneNumber(userData?.user?.phone || '');
+        setUsername(userData?.user?.name || '');
+        setEmail(userData?.user?.email || '');
+        setCity(userData?.user?.city || '');
+    }, [userData?.user?.email]);
 
     const saveUserSettings = async () => {
         const data = {
-            id: userStore?.user?._id,
+            id: userData?.user?._id,
             email,
             phone: phoneNumber,
             name: username,
             city: city,
-            password: userStore?.user?.password
+            password: userData?.user?.password
         };
         try {
             await userUpdate(data);
@@ -91,7 +90,7 @@ export const AccountSettingsSection = observer(({ userData }: { userData: User }
             <div className={styles.user_avatar_container}>
                 <ImageCustom classNameImg={styles.avatar_image} src={AvatarImage} />
                 <div>
-                    <p className={styles.username}>{userStore?.user?.name}</p>
+                    <p className={styles.username}>{userData?.user?.name}</p>
                     <p className={styles.date_registered}>Дата регистрации: 10.06.2024</p>
                 </div>
 

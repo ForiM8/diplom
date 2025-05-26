@@ -5,7 +5,6 @@ import { Select } from '@/components/ui/select/Select'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button/Button'
 import { redirect } from 'next/navigation'
-import userStore from '@/stores/user/UserStores'
 import { itemGetByUser } from '@/actions/products/products.action'
 import { observer } from 'mobx-react-lite'
 
@@ -35,27 +34,26 @@ interface Product {
     user: User;
 }
 
-export const MyAdsSection = observer((
-) => {
-    const [productData, setProductData] = useState<Product[]>()
-    const getProduct = () => {
-        if (userStore?.user?.email) {
-            console.log('userStore?.user?.email - ', userStore?.user?.email);
-            itemGetByUser(userStore?.user?.email)
-                .then(res => {
-                    console.log('res - ', res);
-                    setProductData(res?.result);
-                })
-                .catch(error => {
-                    console.error('Ошибка при получении данных:', error);
-                });
-        }
-    };
-    useEffect(() => {
+export const MyAdsSection = observer(({ productData }: { productData: Product[] }) => {
+    // const [productData, setProductData] = useState<Product[]>()
+    // const getProduct = () => {
+    //     if (userStore?.user?.email) {
+    //         console.log('userStore?.user?.email - ', userStore?.user?.email);
+    //         itemGetByUser(userStore?.user?.email)
+    //             .then(res => {
+    //                 console.log('res - ', res);
+    //                 setProductData(res?.result);
+    //             })
+    //             .catch(error => {
+    //                 console.error('Ошибка при получении данных:', error);
+    //             });
+    //     }
+    // };
+    // useEffect(() => {
 
-        getProduct()
+    //     getProduct()
 
-    }, [userStore?.user?.email])
+    // }, [userStore?.user?.email])
     console.log('productData - ', productData)
     return (
         <div className={styles.container}>

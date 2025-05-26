@@ -1,6 +1,7 @@
 'use server'
 import { ErrorObjectSetup } from "@/utils/errorObjectSetup"
 import { api } from "../request"
+import { revalidatePath } from "next/cache"
 
 export const productCreate = async (data: any) => {
     console.log('data - ', data)
@@ -15,7 +16,20 @@ export const productCreate = async (data: any) => {
     }
     return res.json()
 }
-
+export const productClearByID = async (
+    id: string
+) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/clear/productsById/${id}`
+    const res = await api(url, {
+        method: 'DELETE',
+    })
+    const errorResult = await ErrorObjectSetup(res)
+    if (errorResult?.error) {
+        return errorResult
+    }
+    revalidatePath('/profile/advertisements')
+    return res.json()
+}
 export const itemGetByCategory = async (
     slug: string,
 ) => {

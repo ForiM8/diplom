@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import styles from './ProductsBasketList.module.scss';
 import { useCallback } from 'react';
 import { ProductBasketCard } from '../product-basket-card/ProductBasketCard';
-import { Orders } from '@/types/Order.types';
+import { Order } from '@/types/Order.types';
 
 interface ProductsListShoppingBagType {
     // items?: ProductInBasket[];
-    itemsInBase?: Orders[];
-    basketData: Orders[];
+    itemsInBase?: Order[];
+    basketData: Order[];
     // favoriteItem: ProductInFavorite[]
 }
 
